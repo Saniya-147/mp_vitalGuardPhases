@@ -1,0 +1,856 @@
+/**
+ * VitalGuard AI - Patient Management & Patient Details Stylesheet
+ * assets/css/patients.css
+ *
+ * Implements styling for:
+ * - Patient list filters toolbar and search controls
+ * - Responsive patient roster table with sortable column headers
+ * - Accessible pagination controls and "Showing X-Y of Z" bar
+ * - Add/Edit Patient form modals and accessible confirmation dialogs
+ * - Patient Details overview header and metadata cards
+ * - Date-range selector bar with presets (24h, 7d, 30d) and custom From/To inputs
+ * - Telemetry observation trend chart containers and tabular fallbacks
+ * - Observation history table with data-quality indicator badges
+ * - Prediction history table and feature-contribution XAI bar visualizations
+ * - Patient-associated alerts list and empty states
+ */
+
+/* ==========================================================================
+   Page-level Horizontal Containment & Structural Defaults
+   ========================================================================== */
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+.app-shell {
+  max-width: 100vw;
+  overflow-x: hidden;
+  min-width: 0;
+}
+
+.app-main-content {
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.app-content-body {
+  min-width: 0;
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.patients-table-card {
+  min-width: 0;
+  max-width: 100%;
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Header & Banner Styles for Standalone Pages */
+.dashboard-header {
+  margin-bottom: var(--space-xl);
+}
+
+.dashboard-title-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-xs);
+}
+
+.dashboard-title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-navy);
+  letter-spacing: -0.02em;
+}
+
+.dashboard-subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.dashboard-disclaimer-banner {
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+/* ==========================================================================
+   Patient Management Toolbar & Controls
+   ========================================================================== */
+.patients-toolbar {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md) var(--space-lg);
+  margin-bottom: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  min-width: 0;
+  max-width: 100%;
+}
+
+.patients-toolbar-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  min-width: 0;
+  width: 100%;
+}
+
+.patients-search-wrapper {
+  position: relative;
+  flex: 1 1 16rem;
+  min-width: 14rem;
+  max-width: 28rem;
+}
+
+.patients-search-icon {
+  position: absolute;
+  left: 0.875rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1rem;
+  height: 1rem;
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+
+.patients-search-input {
+  padding-left: 2.375rem !important;
+}
+
+.patients-filters-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.filter-select-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+}
+
+.filter-select-label {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+.filter-select {
+  padding: 0.45rem 0.75rem;
+  font-size: var(--font-size-xs);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-medium);
+  background-color: var(--color-bg-surface);
+  color: var(--color-text-primary);
+  min-width: 9rem;
+}
+
+.patients-actions-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+/* ==========================================================================
+   Sortable Table Headers
+   ========================================================================== */
+.table-header-sortable {
+  padding: 0 !important;
+}
+
+.table-sort-btn {
+  width: 100%;
+  height: 100%;
+  padding: var(--space-sm) var(--space-md);
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary-navy);
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2xs);
+  transition: background-color var(--transition-fast);
+}
+
+.table-sort-btn:hover {
+  background-color: rgba(14, 159, 168, 0.08);
+}
+
+.table-sort-btn:focus-visible {
+  outline: 2px solid var(--color-accent-teal);
+  outline-offset: -2px;
+}
+
+.table-sort-indicator {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.table-header-sortable.is-sorted .table-sort-indicator {
+  color: var(--color-accent-teal);
+  font-weight: var(--font-weight-bold);
+}
+
+/* ==========================================================================
+   Responsive Table Wrapper & Column Styling
+   ========================================================================== */
+.table-responsive {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  background-color: var(--color-bg-surface);
+  position: relative;
+}
+
+.table-responsive:focus-visible {
+  outline: 2px solid var(--color-accent-teal);
+  outline-offset: -2px;
+}
+
+#patients-table {
+  width: 100%;
+  min-width: 62rem; /* ~992px: maintains clean spacing and readability across 9 columns */
+  border-collapse: collapse;
+  text-align: left;
+}
+
+#patients-table th,
+#patients-table td {
+  padding: var(--space-sm) var(--space-md);
+  vertical-align: middle;
+}
+
+/* Stable column minimum widths prevent jumping and clipping */
+#patients-table th:nth-child(1), #patients-table td:nth-child(1) { min-width: 6.5rem; }  /* ID */
+#patients-table th:nth-child(2), #patients-table td:nth-child(2) { min-width: 12.5rem; } /* Name & Ward */
+#patients-table th:nth-child(3), #patients-table td:nth-child(3) { min-width: 7.5rem; }  /* Age */
+#patients-table th:nth-child(4), #patients-table td:nth-child(4) { min-width: 8.5rem; }  /* Reg Date */
+#patients-table th:nth-child(5), #patients-table td:nth-child(5) { min-width: 11rem; }   /* Latest Obs */
+#patients-table th:nth-child(6), #patients-table td:nth-child(6) { min-width: 9rem; }    /* Prediction Status */
+#patients-table th:nth-child(7), #patients-table td:nth-child(7) { min-width: 8.5rem; }  /* Alert Status */
+#patients-table th:nth-child(8), #patients-table td:nth-child(8) { min-width: 9rem; }    /* Record Status */
+#patients-table th:nth-child(9), #patients-table td:nth-child(9) { min-width: 9.5rem; text-align: right; } /* Actions */
+
+/* Patient Table Actions Column */
+.table-actions-cell {
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-2xs);
+}
+
+.table-actions-cell .btn {
+  min-height: 2rem;
+  min-width: 3.5rem;
+  padding: 0.35rem 0.65rem;
+  font-size: var(--font-size-xs);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Table Horizontal Scroll Affordance Hint (Hidden on Desktop, Visible on Laptop/Tablet/Mobile) */
+.table-scroll-hint {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  padding: var(--space-2xs) var(--space-sm);
+  background-color: var(--color-bg-subtle);
+  border: 1px solid var(--color-border-light);
+  border-bottom: none;
+  border-top-left-radius: var(--radius-md);
+  border-top-right-radius: var(--radius-md);
+  font-size: var(--font-size-2xs);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-medium);
+}
+
+.table-scroll-hint svg {
+  color: var(--color-accent-teal);
+  flex-shrink: 0;
+}
+
+#patients-loading-container:not([style*="display: none"]) ~ .table-scroll-hint,
+#patients-empty-container:not([style*="display: none"]) ~ .table-scroll-hint,
+#patients-error-container:not([style*="display: none"]) ~ .table-scroll-hint {
+  display: none !important;
+}
+
+/* ==========================================================================
+   Pagination Navigation Bar
+   ========================================================================== */
+.pagination-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border-light);
+  border-top: none;
+  border-bottom-left-radius: var(--radius-lg);
+  border-bottom-right-radius: var(--radius-lg);
+  flex-wrap: wrap;
+}
+
+.pagination-summary-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+.pagination-summary {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+.pagination-pagesize-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.pagination-pagesize-label {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.pagination-pagesize-select {
+  width: auto;
+  padding: 0.3rem 0.5rem;
+  font-size: var(--font-size-xs);
+}
+
+.pagination-nav-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+}
+
+.pagination-numbers {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.pagination-page-btn {
+  min-width: 2rem;
+  height: 2rem;
+  padding: 0 var(--space-2xs);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.pagination-page-btn:hover:not(.is-active) {
+  background-color: var(--color-bg-subtle);
+  border-color: var(--color-border-medium);
+  color: var(--color-text-primary);
+}
+
+.pagination-page-btn.is-active {
+  background-color: var(--color-accent-teal);
+  color: var(--color-text-inverse);
+  font-weight: var(--font-weight-bold);
+  cursor: default;
+}
+
+.pagination-page-btn:focus-visible {
+  outline: 2px solid var(--color-accent-teal);
+  outline-offset: 1px;
+}
+
+.pagination-ellipsis {
+  padding: 0 var(--space-2xs);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+}
+
+/* ==========================================================================
+   Loading Skeleton / State
+   ========================================================================== */
+.loading-state-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3xl) var(--space-md);
+  gap: var(--space-md);
+}
+
+.loading-state-text {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+/* ==========================================================================
+   Patient Details Page Header & Overview
+   ========================================================================== */
+.patient-details-nav-banner {
+  margin-bottom: var(--space-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.btn-back-patients {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  font-size: var(--font-size-sm);
+  color: var(--color-accent-teal-dark);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--radius-md);
+  background-color: rgba(14, 159, 168, 0.08);
+  border: 1px solid rgba(14, 159, 168, 0.2);
+  transition: all var(--transition-fast);
+}
+
+.btn-back-patients:hover {
+  background-color: rgba(14, 159, 168, 0.16);
+  color: var(--color-primary-navy);
+}
+
+.patient-header-banner {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg) var(--space-xl);
+  margin-bottom: var(--space-xl);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.patient-header-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+}
+
+.patient-id-badge-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  flex-wrap: wrap;
+}
+
+.patient-id-code {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-navy);
+  background-color: var(--color-bg-subtle);
+  border: 1px solid var(--color-border-medium);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+}
+
+.patient-details-name {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-navy);
+}
+
+.patient-meta-summary {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+/* Patient Overview Cards Grid */
+.patient-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+.overview-metric-card {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  box-shadow: var(--shadow-xs);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xs);
+}
+
+.overview-metric-label {
+  font-size: var(--font-size-2xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-semibold);
+}
+
+.overview-metric-value {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-navy);
+  word-break: break-word;
+}
+
+.overview-metric-subtext {
+  font-size: var(--font-size-2xs);
+  color: var(--color-text-secondary);
+}
+
+/* ==========================================================================
+   Date Range Filter Controls
+   ========================================================================== */
+.date-range-bar {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md) var(--space-lg);
+  margin-bottom: var(--space-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.date-range-presets {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.date-range-preset-btn {
+  padding: 0.375rem 0.875rem;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-medium);
+  background-color: var(--color-bg-surface);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.date-range-preset-btn:hover {
+  background-color: var(--color-bg-subtle);
+  border-color: var(--color-border-dark);
+}
+
+.date-range-preset-btn.is-active {
+  background-color: var(--color-primary-navy);
+  border-color: var(--color-primary-navy);
+  color: var(--color-text-inverse);
+}
+
+.date-range-custom-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  flex-wrap: wrap;
+}
+
+.date-range-input {
+  padding: 0.375rem 0.625rem;
+  font-size: var(--font-size-xs);
+  border: 1px solid var(--color-border-medium);
+  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-surface);
+}
+
+/* ==========================================================================
+   Trend Charts Section
+   ========================================================================== */
+.vital-charts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
+}
+
+.chart-single-full {
+  grid-column: 1 / -1;
+}
+
+/* ==========================================================================
+   Feature Contribution XAI Bar Visualizations
+   ========================================================================== */
+.feature-contrib-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-md) 0;
+}
+
+.feature-contrib-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+}
+
+.feature-contrib-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  font-size: var(--font-size-xs);
+}
+
+.feature-contrib-name {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary-navy);
+}
+
+.feature-contrib-stats {
+  color: var(--color-text-secondary);
+}
+
+.feature-contrib-bar-track {
+  width: 100%;
+  height: 0.75rem;
+  background-color: var(--color-bg-subtle);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  position: relative;
+}
+
+.feature-contrib-bar-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, var(--color-accent-teal) 0%, #EA580C 100%);
+  transition: width var(--transition-normal);
+}
+
+/* ==========================================================================
+   Data Quality Flags
+   ========================================================================== */
+.badge-data-quality {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.6875rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-xs);
+  font-weight: var(--font-weight-medium);
+}
+
+.badge-data-quality.level-warning {
+  background-color: var(--color-warning-bg);
+  border: 1px solid var(--color-warning-border);
+  color: var(--color-warning-text);
+}
+
+.badge-data-quality.level-info {
+  background-color: var(--color-info-bg);
+  border: 1px solid var(--color-info-border);
+  color: var(--color-info-text);
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+
+/* Laptop / Small Desktop (<= 1024px) */
+@media (max-width: 1024px) {
+  .table-scroll-hint {
+    display: flex;
+  }
+
+  .patient-overview-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .vital-charts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .patients-toolbar {
+    padding: var(--space-md);
+  }
+}
+
+/* Tablet (<= 768px) */
+@media (max-width: 768px) {
+  .patients-toolbar-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-sm);
+  }
+
+  .patients-search-wrapper {
+    max-width: 100%;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .patients-filters-group {
+    width: 100%;
+    justify-content: flex-start;
+    gap: var(--space-xs);
+  }
+
+  .filter-select-wrapper {
+    flex: 1 1 calc(50% - var(--space-xs));
+    min-width: 9rem;
+  }
+
+  .filter-select {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .pagination-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .pagination-summary-group {
+    justify-content: space-between;
+    width: 100%;
+    gap: var(--space-xs);
+  }
+
+  .pagination-nav-group {
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .date-range-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* Mobile Devices (<= 480px, including 375px and 320px) */
+@media (max-width: 480px) {
+  .app-content-body {
+    padding: var(--space-sm);
+  }
+
+  .dashboard-title {
+    font-size: var(--font-size-xl);
+  }
+
+  .patients-toolbar {
+    padding: var(--space-sm);
+    border-radius: var(--radius-md);
+    gap: var(--space-sm);
+  }
+
+  .filter-select-wrapper {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
+  .filter-select {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .patients-filters-group {
+    gap: var(--space-xs);
+  }
+
+  .patients-filters-group .btn {
+    flex: 1 1 auto;
+    justify-content: center;
+    font-size: var(--font-size-xs);
+    padding: 0.4rem 0.6rem;
+  }
+
+  .patients-filters-group #container-add-patient-action {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
+  .patients-filters-group #container-add-patient-action button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .pagination-summary-group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-xs);
+  }
+
+  .pagination-nav-group {
+    justify-content: center;
+    gap: 2px;
+  }
+
+  .pagination-page-btn {
+    min-width: 1.75rem;
+    height: 1.75rem;
+    padding: 0 var(--space-3xs);
+    font-size: var(--font-size-2xs);
+  }
+
+  .pagination-prev,
+  .pagination-next {
+    padding: 0.35rem 0.5rem;
+    font-size: var(--font-size-2xs);
+  }
+
+  .patient-overview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .patient-header-banner {
+    padding: var(--space-md);
+  }
+
+  .patient-details-name {
+    font-size: var(--font-size-xl);
+  }
+
+  .date-range-presets {
+    flex-wrap: wrap;
+  }
+}

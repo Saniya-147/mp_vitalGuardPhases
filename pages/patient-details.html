@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="VitalGuard AI - Monitored Patient Details & Telemetry Trends">
+  <title>VitalGuard AI - Patient Details</title>
+
+  <!-- Foundational Stylesheets -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/patients.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body>
+
+  <!-- Accessible Skip Link -->
+  <a href="#main-patient-details" class="sr-only">Skip to patient details content</a>
+
+  <!-- Mobile Sidebar Backdrop -->
+  <div id="sidebar-backdrop" class="sidebar-backdrop" aria-hidden="true"></div>
+
+  <!-- App Shell -->
+  <div class="app-shell">
+
+    <!-- Collapsible Sidebar -->
+    <aside id="app-sidebar" class="app-sidebar" aria-label="Main Navigation">
+      
+      <!-- Brand Header -->
+      <div class="sidebar-brand">
+        <img src="../assets/images/vitalguard-logo.svg" alt="VitalGuard AI Emblem" class="sidebar-logo" width="36" height="36">
+        <div>
+          <div class="sidebar-title">VitalGuard AI</div>
+          <div class="sidebar-subtitle">Clinical Intelligence</div>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="sidebar-nav-container">
+        <div class="sidebar-nav-section-title">Operational Views</div>
+        <ul class="sidebar-nav-list">
+          <li class="sidebar-nav-item">
+            <a href="dashboard.html" class="sidebar-nav-link">
+              <span class="sidebar-nav-label-group">
+                <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="3" y="3" width="7" height="9"></rect>
+                  <rect x="14" y="3" width="7" height="5"></rect>
+                  <rect x="14" y="12" width="7" height="9"></rect>
+                  <rect x="3" y="16" width="7" height="5"></rect>
+                </svg>
+                <span>Dashboard</span>
+              </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="patients.html" class="sidebar-nav-link is-active" aria-current="page">
+              <span class="sidebar-nav-label-group">
+                <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                <span>Patients</span>
+              </span>
+              <span class="badge badge-info" style="font-size: 0.65rem;">Active</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="predictions.html" class="sidebar-nav-link">
+              <span class="sidebar-nav-label-group">
+                <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M2 12h5l3 7 4-14 3 7h5"></path>
+                </svg>
+                <span>Predictions &amp; XAI</span>
+              </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="alerts.html" class="sidebar-nav-link">
+              <span class="sidebar-nav-label-group">
+                <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                  <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                </svg>
+                <span>Alerts Triage</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="sidebar-nav-section-title" style="margin-top: var(--space-md);">Governance</div>
+        <ul class="sidebar-nav-list">
+          <li class="sidebar-nav-item">
+            <a href="users.html" class="sidebar-nav-link">
+              <span class="sidebar-nav-label-group">
+                <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span>User Management</span>
+              </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="reports.html" class="sidebar-nav-link">
+              <span class="sidebar-nav-label-group">
+                <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+                <span>Reports</span>
+              </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="audit-logs.html" class="sidebar-nav-link">
+              <span class="sidebar-nav-label-group">
+                <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                <span>Audit Logs</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Sidebar User Footer -->
+      <div class="sidebar-footer">
+        <div class="sidebar-user-card">
+          <div class="sidebar-user-avatar" id="sidebar-user-initials" aria-hidden="true">U</div>
+          <div class="sidebar-user-info">
+            <div class="sidebar-user-name" id="sidebar-user-name">User Name</div>
+            <div class="sidebar-user-role" id="sidebar-user-role">Role</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- App Main Content Column -->
+    <div class="app-main-content">
+      
+      <!-- Topbar Header -->
+      <header class="app-topbar">
+        <div class="topbar-left">
+          <button type="button" id="btn-menu-toggle" class="menu-toggle-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+          
+          <nav class="topbar-breadcrumb" aria-label="Breadcrumb">
+            <a href="dashboard.html" style="color: inherit; text-decoration: none;">Portal</a>
+            <span aria-hidden="true">/</span>
+            <a href="patients.html" style="color: inherit; text-decoration: none;">Patients</a>
+            <span aria-hidden="true">/</span>
+            <span class="topbar-breadcrumb-active" id="topbar-breadcrumb-patient-id">Patient Details</span>
+          </nav>
+        </div>
+
+        <div class="topbar-right">
+          <div class="badge badge-info" id="topbar-simulation-badge">
+            <span class="badge-dot" aria-hidden="true"></span>
+            Simulation Active
+          </div>
+
+          <div style="display: flex; align-items: center; gap: var(--space-xs);">
+            <span id="topbar-user-badge" class="badge badge-neutral">Role</span>
+            <button type="button" id="btn-topbar-logout" class="btn btn-outline btn-sm" aria-label="Sign out of administrative portal">
+              Sign Out
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Patient Details Main Body -->
+      <main class="app-content-body" id="main-patient-details" tabindex="-1">
+        
+        <!-- Navigation Banner / Back to Patients Button -->
+        <div class="patient-details-nav-banner">
+          <a href="patients.html" id="btn-back-to-patients" class="btn-back-patients">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            <span>Back to Patients</span>
+          </a>
+          <div>
+            <span class="badge badge-neutral" style="font-size: var(--font-size-xs);">
+              Synthetic Patient Telemetry Record
+            </span>
+          </div>
+        </div>
+
+        <!-- Dynamic State Containers (Loading, Not Found / Error) -->
+        <div id="patient-loading-container" style="display: none;"></div>
+        <div id="patient-error-container" style="display: none;"></div>
+
+        <!-- Main Details Content Area (Populated on data load) -->
+        <div id="patient-details-content" style="display: none;">
+
+          <!-- 1. Patient Header Summary Banner -->
+          <section aria-labelledby="patient-header-title" class="patient-header-banner">
+            <div class="patient-header-main">
+              <div class="patient-id-badge-row">
+                <span class="patient-id-code" id="patient-banner-id">PT-0000</span>
+                <span id="patient-banner-record-status" class="badge badge-info">Active Monitoring</span>
+                <span id="patient-banner-alert-status" class="badge badge-neutral">No Alerts</span>
+                <span class="badge badge-neutral" style="font-size: var(--font-size-2xs);">source: "simulated"</span>
+              </div>
+              <h1 class="patient-details-name" id="patient-banner-name">Patient Display Name</h1>
+              <p class="patient-meta-summary" id="patient-banner-meta">
+                -- yrs • General Observation • Room-S000 • Admitted: --
+              </p>
+            </div>
+            <div>
+              <button type="button" id="btn-edit-patient-details" class="btn btn-outline btn-sm" style="display: none;">
+                Edit Profile
+              </button>
+            </div>
+          </section>
+
+          <!-- Simulation Environment Disclaimer Notice -->
+          <div class="alert alert-info" role="note" style="margin-bottom: var(--space-xl);">
+            <svg class="alert-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+            </svg>
+            <div class="alert-content">
+              <div class="alert-title">Academic Demonstration Dataset Notice</div>
+              <div>
+                All demographic fields, physiological vitals, and deterioration indicators for this subject are synthetic fixtures tagged <code>source: "simulated"</code>. Not clinically validated and strictly prohibited from actual patient care.
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Patient Demographics & Telemetry Overview Grid -->
+          <section aria-labelledby="section-overview-title">
+            <h2 id="section-overview-title" class="sr-only">Patient Demographics and Telemetry Overview</h2>
+            
+            <div class="patient-overview-grid">
+              
+              <div class="overview-metric-card">
+                <div class="overview-metric-label">Patient ID &amp; Gender</div>
+                <div class="overview-metric-value" id="overview-id-gender">--</div>
+                <div class="overview-metric-subtext">Age: <span id="overview-age">--</span> yrs</div>
+              </div>
+
+              <div class="overview-metric-card">
+                <div class="overview-metric-label">Ward &amp; Room Assignment</div>
+                <div class="overview-metric-value" id="overview-dept">--</div>
+                <div class="overview-metric-subtext" id="overview-room">Room-S000</div>
+              </div>
+
+              <div class="overview-metric-card">
+                <div class="overview-metric-label">Registration &amp; Admission</div>
+                <div class="overview-metric-value" id="overview-admission">--</div>
+                <div class="overview-metric-subtext">Registered: <span id="overview-registration">--</span></div>
+              </div>
+
+              <div class="overview-metric-card">
+                <div class="overview-metric-label">Telemetry Ingest Status</div>
+                <div class="overview-metric-value" id="overview-obs-time">--</div>
+                <div class="overview-metric-subtext">Latest Observation Timestamp</div>
+              </div>
+
+            </div>
+          </section>
+
+          <!-- 3. Date-Range Selector Bar -->
+          <section aria-labelledby="section-date-range-title" class="date-range-bar">
+            <h2 id="section-date-range-title" class="sr-only">Date Range Filtering Controls</h2>
+
+            <div class="date-range-presets">
+              <span style="font-size: var(--font-size-xs); font-weight: var(--font-weight-medium); color: var(--color-text-secondary); margin-right: var(--space-xs);">
+                Telemetry Window:
+              </span>
+              <button type="button" class="date-range-preset-btn is-active" data-preset="24h" id="btn-preset-24h">Last 24 Hours</button>
+              <button type="button" class="date-range-preset-btn" data-preset="7d" id="btn-preset-7d">Last 7 Days</button>
+              <button type="button" class="date-range-preset-btn" data-preset="30d" id="btn-preset-30d">Last 30 Days</button>
+            </div>
+
+            <!-- Custom From / To Inputs -->
+            <form id="form-custom-date-range" class="date-range-custom-group" novalidate>
+              <label for="input-date-from" class="form-label" style="margin: 0; font-size: var(--font-size-xs);">From:</label>
+              <input type="date" id="input-date-from" class="date-range-input" aria-label="Custom start date">
+              
+              <label for="input-date-to" class="form-label" style="margin: 0; font-size: var(--font-size-xs);">To:</label>
+              <input type="date" id="input-date-to" class="date-range-input" aria-label="Custom end date">
+
+              <button type="submit" class="btn btn-outline btn-sm" id="btn-apply-date-range">Apply</button>
+            </form>
+          </section>
+
+          <!-- 4. Vital-Sign Trend Charts Grid -->
+          <section aria-labelledby="section-charts-title" style="margin-bottom: var(--space-xl);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-md); flex-wrap: wrap; gap: var(--space-xs);">
+              <div>
+                <h2 id="section-charts-title" style="font-size: var(--font-size-lg); font-weight: var(--font-weight-bold); color: var(--color-primary-navy);">
+                  Physiological Vital-Sign Telemetry Trends
+                </h2>
+                <p style="font-size: var(--font-size-xs); color: var(--color-text-muted);">
+                  Continuous physiological telemetry recordings over the selected observation window. Missing readings are represented as gaps (spanGaps: false).
+                </p>
+              </div>
+              <span class="badge badge-neutral" id="charts-range-indicator">Window: Last 24 Hours</span>
+            </div>
+
+            <!-- No observations in range notice -->
+            <div id="charts-empty-notice" style="display: none;"></div>
+
+            <div class="vital-charts-grid" id="vital-charts-container">
+              
+              <!-- Chart 1: Heart Rate (bpm) -->
+              <div class="chart-card">
+                <div class="chart-card-header">
+                  <div>
+                    <h3 class="chart-card-title">Heart Rate (HR)</h3>
+                    <p class="chart-card-subtitle">Continuous ECG telemetry feed &bull; Unit: bpm</p>
+                  </div>
+                  <span class="badge badge-info">ECG Sensor</span>
+                </div>
+                <div class="chart-canvas-wrapper">
+                  <canvas id="chart-heart-rate" role="img" aria-label="Line chart showing heart rate trends over time in beats per minute."></canvas>
+                </div>
+                <div class="chart-accessible-summary" id="summary-heart-rate">
+                  <!-- Populated dynamically with accessible data table -->
+                </div>
+              </div>
+
+              <!-- Chart 2: Blood Pressure (Systolic & Diastolic mmHg) -->
+              <div class="chart-card">
+                <div class="chart-card-header">
+                  <div>
+                    <h3 class="chart-card-title">Blood Pressure (SBP / DBP)</h3>
+                    <p class="chart-card-subtitle">Non-invasive arterial pressure &bull; Unit: mmHg</p>
+                  </div>
+                  <span class="badge badge-info">NIBP Monitor</span>
+                </div>
+                <div class="chart-canvas-wrapper">
+                  <canvas id="chart-blood-pressure" role="img" aria-label="Line chart showing systolic and diastolic blood pressure trends in mmHg."></canvas>
+                </div>
+                <div class="chart-accessible-summary" id="summary-blood-pressure">
+                  <!-- Populated dynamically -->
+                </div>
+              </div>
+
+              <!-- Chart 3: Oxygen Saturation (SpO2 %) -->
+              <div class="chart-card">
+                <div class="chart-card-header">
+                  <div>
+                    <h3 class="chart-card-title">Oxygen Saturation (SpO2)</h3>
+                    <p class="chart-card-subtitle">Pulse oximetry telemetry feed &bull; Unit: %</p>
+                  </div>
+                  <span class="badge badge-info">Pulse Oximeter</span>
+                </div>
+                <div class="chart-canvas-wrapper">
+                  <canvas id="chart-spo2" role="img" aria-label="Line chart showing peripheral capillary oxygen saturation percentage over time."></canvas>
+                </div>
+                <div class="chart-accessible-summary" id="summary-spo2">
+                  <!-- Populated dynamically -->
+                </div>
+              </div>
+
+              <!-- Chart 4: Respiratory Rate (breaths/min) -->
+              <div class="chart-card">
+                <div class="chart-card-header">
+                  <div>
+                    <h3 class="chart-card-title">Respiratory Rate (RR)</h3>
+                    <p class="chart-card-subtitle">Transthoracic impedance telemetry &bull; Unit: breaths/min</p>
+                  </div>
+                  <span class="badge badge-info">Impedance Sensor</span>
+                </div>
+                <div class="chart-canvas-wrapper">
+                  <canvas id="chart-respiratory-rate" role="img" aria-label="Line chart showing respiratory rate trends in breaths per minute."></canvas>
+                </div>
+                <div class="chart-accessible-summary" id="summary-respiratory-rate">
+                  <!-- Populated dynamically -->
+                </div>
+              </div>
+
+              <!-- Chart 5: Body Temperature (°C) -->
+              <div class="chart-card chart-single-full">
+                <div class="chart-card-header">
+                  <div>
+                    <h3 class="chart-card-title">Core Body Temperature</h3>
+                    <p class="chart-card-subtitle">Continuous skin/core telemetry thermistor &bull; Unit: °C</p>
+                  </div>
+                  <span class="badge badge-info">Thermistor</span>
+                </div>
+                <div class="chart-canvas-wrapper">
+                  <canvas id="chart-temperature" role="img" aria-label="Line chart showing core body temperature trends in degrees Celsius."></canvas>
+                </div>
+                <div class="chart-accessible-summary" id="summary-temperature">
+                  <!-- Populated dynamically -->
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+          <!-- 5. Observation History Table Card -->
+          <section aria-labelledby="section-obs-table-title" class="card" style="margin-bottom: var(--space-xl);">
+            <div class="card-header" style="display: flex; align-items: center; justify-content: space-between; gap: var(--space-sm); flex-wrap: wrap;">
+              <div>
+                <h2 id="section-obs-table-title" style="font-size: var(--font-size-base); font-weight: var(--font-weight-bold); color: var(--color-primary-navy);">
+                  Observation History Log
+                </h2>
+                <p style="font-size: var(--font-size-xs); color: var(--color-text-muted);">
+                  Tabular telemetry recordings matching the selected date range. Missing values are indicated as "Not recorded".
+                </p>
+              </div>
+              <span class="badge badge-neutral" id="obs-table-count-badge">0 Observations</span>
+            </div>
+
+            <div class="table-container">
+              <table class="table" id="observations-table" aria-label="Patient observation telemetry history">
+                <thead>
+                  <tr>
+                    <th scope="col">Observation Timestamp</th>
+                    <th scope="col">Heart Rate</th>
+                    <th scope="col">Blood Pressure (SBP/DBP)</th>
+                    <th scope="col">SpO2</th>
+                    <th scope="col">Respiratory Rate</th>
+                    <th scope="col">Temperature</th>
+                    <th scope="col">Sensor Reliability / Flags</th>
+                  </tr>
+                </thead>
+                <tbody id="observations-table-body">
+                  <!-- Populated dynamically -->
+                </tbody>
+              </table>
+            </div>
+
+            <div id="observations-pagination-container"></div>
+          </section>
+
+          <!-- 6. Prediction History & Latest Explanation (Two Columns) -->
+          <section aria-labelledby="section-predictions-title" style="margin-bottom: var(--space-xl);">
+            <h2 id="section-predictions-title" class="sr-only">Simulated Deterioration Risk Predictions &amp; Explainability</h2>
+
+            <div class="vital-charts-grid">
+              
+              <!-- Column 1: Prediction History Table -->
+              <div class="card">
+                <div class="card-header">
+                  <h3 style="font-size: var(--font-size-base); font-weight: var(--font-weight-bold); color: var(--color-primary-navy);">
+                    Predictive Deterioration Risk History
+                  </h3>
+                  <p style="font-size: var(--font-size-xs); color: var(--color-text-muted);">
+                    Simulated model inference records &bull; Model version &amp; horizons
+                  </p>
+                </div>
+                <div class="card-body" style="padding: 0;">
+                  <div class="table-container" style="border: none;">
+                    <table class="table" id="predictions-table" aria-label="Patient simulated prediction records">
+                      <thead>
+                        <tr>
+                          <th scope="col">Prediction ID</th>
+                          <th scope="col">Timestamp</th>
+                          <th scope="col">Horizon</th>
+                          <th scope="col">Model</th>
+                          <th scope="col">Score</th>
+                          <th scope="col">Risk Tier</th>
+                          <th scope="col">Status</th>
+                        </tr>
+                      </thead>
+                      <tbody id="predictions-table-body">
+                        <!-- Populated dynamically -->
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Column 2: Latest Prediction Explanation (XAI) -->
+              <div class="card">
+                <div class="card-header">
+                  <h3 style="font-size: var(--font-size-base); font-weight: var(--font-weight-bold); color: var(--color-primary-navy);">
+                    Explainable AI (XAI) Feature Attribution
+                  </h3>
+                  <p style="font-size: var(--font-size-xs); color: var(--color-text-muted);">
+                    Feature weights for latest prediction (Simulated demonstration values only)
+                  </p>
+                </div>
+                <div class="card-body" id="prediction-explanation-container">
+                  <!-- Populated dynamically with feature contribution bars or unavailable notice -->
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+          <!-- 7. Alert Incident History & Data Quality Sections (Two Columns) -->
+          <section aria-labelledby="section-alerts-title" style="margin-bottom: var(--space-xl);">
+            <h2 id="section-alerts-title" class="sr-only">Patient Alert History and Sensor Data Quality</h2>
+
+            <div class="vital-charts-grid">
+              
+              <!-- Column 1: Patient Alert History -->
+              <div class="card">
+                <div class="card-header">
+                  <h3 style="font-size: var(--font-size-base); font-weight: var(--font-weight-bold); color: var(--color-primary-navy);">
+                    Patient Alert History
+                  </h3>
+                  <p style="font-size: var(--font-size-xs); color: var(--color-text-muted);">
+                    Threshold notifications associated with this patient
+                  </p>
+                </div>
+                <div class="card-body" style="padding: 0;">
+                  <div class="table-container" style="border: none;">
+                    <table class="table" id="alerts-table" aria-label="Patient alert incidents history">
+                      <thead>
+                        <tr>
+                          <th scope="col">Alert ID</th>
+                          <th scope="col">Triggered Timestamp</th>
+                          <th scope="col">Title / Description</th>
+                          <th scope="col">Severity</th>
+                          <th scope="col">Status</th>
+                        </tr>
+                      </thead>
+                      <tbody id="alerts-table-body">
+                        <!-- Populated dynamically -->
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Column 2: Data-Quality Information & Sensor Diagnostics -->
+              <div class="card">
+                <div class="card-header">
+                  <h3 style="font-size: var(--font-size-base); font-weight: var(--font-weight-bold); color: var(--color-primary-navy);">
+                    Sensor Data-Quality &amp; Ingestion Diagnostics
+                  </h3>
+                  <p style="font-size: var(--font-size-xs); color: var(--color-text-muted);">
+                    Metadata flags supplied by simulated telemetry hardware
+                  </p>
+                </div>
+                <div class="card-body" id="data-quality-container">
+                  <!-- Populated dynamically with sensor diagnostic information -->
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+        </div>
+
+      </main>
+
+      <!-- App Shell Footer -->
+      <footer style="padding: var(--space-md) var(--space-xl); border-top: 1px solid var(--color-border-light); background-color: var(--color-bg-surface); font-size: var(--font-size-xs); color: var(--color-text-muted); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-xs);">
+        <div>VitalGuard AI &bull; Patient Details &amp; Telemetry Module (Phase 3 Build)</div>
+        <div>Academic Prototype &bull; Fictional Telemetry Feed &bull; <code>source: "simulated"</code></div>
+      </footer>
+
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Script Execution Order (Classic JS, Dependency Ordered) -->
+  <!-- Permitted CDN: Chart.js UMD -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="../assets/js/config.js"></script>
+  <script src="../assets/js/mock-data.js"></script>
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/auth.js"></script>
+  <script src="../assets/js/utils.js"></script>
+  <script src="../assets/js/ui-components.js"></script>
+  <script src="../assets/js/patient-details.js"></script>
+</body>
+</html>

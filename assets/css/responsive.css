@@ -1,0 +1,126 @@
+/**
+ * VitalGuard AI - Responsive Stylesheet
+ * responsive.css
+ * Media queries and viewport-specific adaptations across mobile (320px, 375px),
+ * tablet (768px), laptop (1024px), and desktop (1440px) breakpoints.
+ */
+
+/* ==========================================================================
+   Desktop / Large Displays (1440px+)
+   ========================================================================== */
+@media (min-width: 1440px) {
+  .auth-container {
+    max-width: 30rem;
+  }
+}
+
+/* ==========================================================================
+   Laptop / Small Desktop (1024px - 1439px)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .app-sidebar {
+    width: 14rem;
+  }
+}
+
+/* ==========================================================================
+   Tablet & Medium Displays (<= 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+  :root {
+    --space-xl: 1.5rem;
+    --space-2xl: 2rem;
+  }
+
+  .auth-main {
+    padding: var(--space-md) var(--space-sm);
+  }
+
+  .auth-card {
+    padding: var(--space-lg) var(--space-md);
+    border-radius: var(--radius-lg);
+  }
+
+  .auth-title {
+    font-size: var(--font-size-xl);
+  }
+
+  .auth-logo-wrapper {
+    width: 3.25rem;
+    height: 3.25rem;
+  }
+
+  .demo-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2xs);
+    padding: var(--space-xs) var(--space-sm);
+  }
+
+  .toast-container {
+    left: var(--space-sm);
+    right: var(--space-sm);
+    bottom: var(--space-sm);
+    max-width: 100%;
+    width: auto;
+  }
+}
+
+/* ==========================================================================
+   Mobile Devices (<= 480px, including 375px and 320px)
+   ========================================================================== */
+@media (max-width: 480px) {
+  :root {
+    --font-size-3xl: 1.5rem;
+    --font-size-2xl: 1.25rem;
+    --font-size-xl: 1.125rem;
+  }
+
+  body {
+    font-size: var(--font-size-sm);
+  }
+
+  .auth-main {
+    padding: var(--space-xs);
+    align-items: flex-start;
+  }
+
+  .auth-container {
+    width: 100%;
+  }
+
+  .auth-card {
+    padding: var(--space-md) var(--space-sm);
+    box-shadow: none;
+    border-radius: var(--radius-md);
+  }
+
+  .btn {
+    padding: 0.625rem 1rem;
+  }
+
+  .modal-dialog {
+    margin: var(--space-xs);
+    max-width: calc(100vw - 1rem);
+  }
+}
+
+/* Extra small screens (down to 320px) */
+@media (max-width: 340px) {
+  .auth-title {
+    font-size: 1.125rem;
+  }
+
+  .auth-subtitle {
+    font-size: var(--font-size-xs);
+  }
+
+  .btn {
+    font-size: var(--font-size-xs);
+  }
+
+  .form-control {
+    font-size: var(--font-size-xs);
+    padding: 0.5rem 0.625rem;
+  }
+}

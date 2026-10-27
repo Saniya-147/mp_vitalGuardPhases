@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%" role="img" aria-label="VitalGuard AI Emblem">
+  <defs>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B1F3A" />
+      <stop offset="100%" stop-color="#1E3A5F" />
+    </linearGradient>
+    <linearGradient id="pulseGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0E9FA8" />
+      <stop offset="50%" stop-color="#2DD4BF" />
+      <stop offset="100%" stop-color="#38BDF8" />
+    </linearGradient>
+    <linearGradient id="glowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0E9FA8" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#0B1F3A" stop-opacity="0" />
+    </linearGradient>
+    <filter id="subtleGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background Shield Container -->
+  <path d="M 100,16 C 145,16 172,30 172,66 C 172,126 126,168 100,184 C 74,168 28,126 28,66 C 28,30 55,16 100,16 Z" 
+        fill="url(#shieldGrad)" 
+        stroke="#0E9FA8" 
+        stroke-width="3" 
+        stroke-linejoin="round" />
+
+  <!-- Inner Soft Accent Ring -->
+  <path d="M 100,28 C 137,28 159,39 159,69 C 159,119 121,154 100,168 C 79,154 41,119 41,69 C 41,39 63,28 100,28 Z" 
+        fill="url(#glowGrad)" />
+
+  <!-- VitalGuard Pulse Line (ECG + Tech Nodes) -->
+  <path d="M 46,102 L 72,102 L 83,78 L 94,128 L 107,64 L 118,114 L 128,96 L 138,102 L 154,102" 
+        fill="none" 
+        stroke="url(#pulseGrad)" 
+        stroke-width="5.5" 
+        stroke-linecap="round" 
+        stroke-linejoin="round" 
+        filter="url(#subtleGlow)" />
+
+  <!-- Neural Connection Nodes -->
+  <circle cx="107" cy="64" r="5" fill="#38BDF8" />
+  <circle cx="94" cy="128" r="4.5" fill="#2DD4BF" />
+  <circle cx="100" cy="48" r="3.5" fill="#0E9FA8" />
+
+  <!-- Protective Cross / Diamond AI Core Accent -->
+  <polygon points="100,38 104,46 112,46 106,51 108,59 100,54 92,59 94,51 88,46 96,46" 
+           fill="#38BDF8" 
+           opacity="0.9" />
+</svg>

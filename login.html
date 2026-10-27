@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="VitalGuard AI - Administrative Login and Clinical Monitoring Portal">
+  <title>VitalGuard AI - Administrative Portal Login</title>
+
+  <!-- Foundational Stylesheets (Ordered strictly by layer) -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body class="auth-page">
+
+  <!-- Accessible Skip Link -->
+  <a href="#login-form" class="sr-only">Skip to login form</a>
+
+  <!-- Demo Mode Banner (Dynamically displayed when MOCK_MODE === true) -->
+  <header class="auth-header">
+    <div id="demo-banner-container" role="region" aria-label="Demo Mode Notification" style="display: none;">
+      <div class="demo-banner">
+        <div class="demo-banner-content">
+          <span class="demo-banner-tag">Simulation Mode Active</span>
+          <span>Running deterministic synthetic cohort data. No live hospital backend connected.</span>
+        </div>
+        <div>
+          <span class="badge badge-info">
+            <span class="badge-dot" aria-hidden="true"></span>
+            Phase 1 Prototype
+          </span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Login Interface -->
+  <main class="auth-main" id="main-content">
+    <div class="auth-container">
+      
+      <!-- Academic Prototype Disclaimer Banner -->
+      <div class="alert alert-info" role="note" style="margin-bottom: var(--space-md);">
+        <svg class="alert-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+        </svg>
+        <div class="alert-content">
+          <div class="alert-title">Academic & Engineering Demonstration</div>
+          <div>VitalGuard AI is a prototype for evaluation and research. Not for real patient care.</div>
+        </div>
+      </div>
+
+      <!-- Authentication Card -->
+      <section class="auth-card" aria-labelledby="login-heading">
+        
+        <!-- Brand Header -->
+        <div class="auth-brand">
+          <div class="auth-logo-wrapper">
+            <img src="assets/images/vitalguard-logo.svg" alt="VitalGuard AI Emblem" width="64" height="64">
+          </div>
+          <h1 id="login-heading" class="auth-title">VitalGuard AI</h1>
+          <p class="auth-subtitle">Clinical Intelligence &amp; Risk Monitoring Platform</p>
+        </div>
+
+        <!-- Live Status / Top-level Error Alert Container -->
+        <div id="login-alert-container" aria-live="assertive" role="alert" style="display: none;"></div>
+
+        <!-- Phase 1 Authenticated Active Session Confirmation (Shown after successful login) -->
+        <div id="auth-success-card" style="display: none;" class="card" aria-live="polite">
+          <div class="card-header" style="background-color: var(--color-success-bg); border-bottom-color: var(--color-success-border);">
+            <div style="display: flex; align-items: center; gap: var(--space-xs);">
+              <span class="badge badge-success">
+                <span class="badge-dot" aria-hidden="true"></span>
+                Authenticated
+              </span>
+              <strong style="color: var(--color-success-text); font-size: var(--font-size-sm);">Phase 1 Verification Succeeded</strong>
+            </div>
+          </div>
+          <div class="card-body">
+            <p style="margin-bottom: var(--space-sm); color: var(--color-text-primary);">
+              Welcome, <strong id="success-user-name">User</strong>!
+            </p>
+            <div style="font-size: var(--font-size-xs); color: var(--color-text-secondary); margin-bottom: var(--space-md); display: flex; flex-direction: column; gap: var(--space-2xs);">
+              <div><strong>Role:</strong> <span id="success-user-role" class="badge badge-info">Role</span></div>
+              <div><strong>Account:</strong> <span id="success-user-email"></span></div>
+              <div><strong>Simulated Session:</strong> Active (sessionStorage)</div>
+            </div>
+            
+            <div class="alert alert-info" style="font-size: var(--font-size-xs); padding: var(--space-sm); margin-bottom: var(--space-md);">
+              <div class="alert-title">Active Session Detected</div>
+              <div>You are currently signed in. You may enter the dashboard or switch roles below.</div>
+            </div>
+
+            <div style="display: flex; gap: var(--space-xs); flex-wrap: wrap;">
+              <a href="pages/dashboard.html" id="btn-enter-dashboard" class="btn btn-primary btn-sm" style="text-decoration: none;">
+                Enter Dashboard &rarr;
+              </a>
+              <button type="button" id="btn-session-logout" class="btn btn-outline btn-sm">
+                Sign Out (Clear Session)
+              </button>
+              <button type="button" id="btn-test-another-role" class="btn btn-ghost btn-sm">
+                Switch Role / Retest
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Login Form -->
+        <form id="login-form" novalidate autocomplete="on">
+          
+          <!-- Email Input Group -->
+          <div class="form-group">
+            <label for="input-email" class="form-label">
+              Professional Email Address
+              <span class="required-indicator" aria-hidden="true">*</span>
+            </label>
+            <div class="form-control-wrapper">
+              <input 
+                type="email" 
+                id="input-email" 
+                name="email" 
+                class="form-control" 
+                placeholder="name@vitalguard.test" 
+                autocomplete="email" 
+                required 
+                aria-required="true"
+                aria-describedby="email-error">
+            </div>
+            <div id="email-error" class="form-error" role="alert" aria-live="polite"></div>
+          </div>
+
+          <!-- Password Input Group -->
+          <div class="form-group">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: var(--space-2xs);">
+              <label for="input-password" class="form-label" style="margin-bottom: 0;">
+                Password
+                <span class="required-indicator" aria-hidden="true">*</span>
+              </label>
+            </div>
+            <div class="form-control-wrapper">
+              <input 
+                type="password" 
+                id="input-password" 
+                name="password" 
+                class="form-control has-trailing-action" 
+                placeholder="Enter account password" 
+                autocomplete="current-password" 
+                required 
+                aria-required="true"
+                aria-describedby="password-error">
+              <button 
+                type="button" 
+                id="btn-toggle-password" 
+                class="input-action-btn" 
+                aria-label="Show password as plain text" 
+                aria-pressed="false"
+                title="Show/hide password">
+                <!-- Eye Icon (Show password) -->
+                <svg id="icon-eye-show" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+                <!-- Eye-Off Icon (Hide password, hidden by default) -->
+                <svg id="icon-eye-hide" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display: none;">
+                  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                  <line x1="1" y1="1" x2="23" y2="23"></line>
+                </svg>
+              </button>
+            </div>
+            <div id="password-error" class="form-error" role="alert" aria-live="polite"></div>
+          </div>
+
+          <!-- Remember Me Checkbox -->
+          <div class="form-group" style="margin-bottom: var(--space-lg);">
+            <label class="form-check">
+              <input type="checkbox" id="check-remember" name="remember" class="form-check-input">
+              <span class="form-check-label">Remember email on this device</span>
+            </label>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" id="btn-login-submit" class="btn btn-primary btn-block btn-lg">
+            <span>Sign In to Portal</span>
+          </button>
+        </form>
+
+        <!-- Demo Accounts Box (Shown strictly when MOCK_MODE === true) -->
+        <div id="demo-credentials-container" style="display: none; margin-top: var(--space-xl); padding-top: var(--space-lg); border-top: 1px solid var(--color-border-light);">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-xs);">
+            <span style="font-size: var(--font-size-xs); font-weight: var(--font-weight-bold); text-transform: uppercase; color: var(--color-text-muted); letter-spacing: 0.05em;">
+              Demo Test Accounts (Simulation Only)
+            </span>
+            <span class="badge badge-neutral">Phase 1</span>
+          </div>
+          <p style="font-size: var(--font-size-xs); color: var(--color-text-secondary); margin-bottom: var(--space-sm);">
+            Select an account below to auto-populate credentials for role verification:
+          </p>
+          <div id="demo-credentials-list" style="display: flex; flex-direction: column; gap: var(--space-xs);"></div>
+        </div>
+
+      </section>
+
+      <!-- Footer Notes -->
+      <footer class="auth-footer">
+        <p>VitalGuard AI Administrative Portal &bull; Phase 1 Architecture Build</p>
+        <p style="margin-top: var(--space-3xs);">
+          Fictional demonstration data. Protected healthcare communications prototype.
+        </p>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- Script Execution Order (Classic JS, Dependency Ordered) -->
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/mock-data.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/utils.js"></script>
+  <script src="assets/js/login.js"></script>
+</body>
+</html>

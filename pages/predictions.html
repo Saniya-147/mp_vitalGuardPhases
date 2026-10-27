@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="VitalGuard AI - Predictive Deterioration Scoring and Explainability (XAI)">
+  <title>VitalGuard AI - Predictions &amp; Explainability</title>
+
+  <!-- Foundational Stylesheets -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/predictions.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body>
+
+  <!-- Accessible Skip Link -->
+  <a href="#main-predictions" class="sr-only">Skip to predictions content</a>
+
+  <!-- Mobile Sidebar Backdrop -->
+  <div id="sidebar-backdrop" class="sidebar-backdrop" aria-hidden="true"></div>
+
+  <!-- App Shell -->
+  <div class="app-shell">
+
+    <!-- Collapsible Sidebar -->
+    <aside id="app-sidebar" class="app-sidebar" aria-label="Main Navigation">
+      
+      <!-- Brand Header -->
+      <div class="sidebar-brand">
+        <img src="../assets/images/vitalguard-logo.svg" alt="VitalGuard AI Emblem" class="sidebar-logo" width="36" height="36">
+        <div>
+          <div class="sidebar-title">VitalGuard AI</div>
+          <div class="sidebar-subtitle">Clinical Intelligence</div>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="sidebar-nav-container">
+        <div class="sidebar-nav-section-title">Operational Views</div>
+        <ul class="sidebar-nav-list">
+          <li class="sidebar-nav-item">
+            <a href="dashboard.html" class="sidebar-nav-link">
+              <span class="sidebar-nav-label-group">
+                <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="3" y="3" width="7" height="9"></rect>
+                  <rect x="14" y="3" width="7" height="5"></rect>
+                  <rect x="14" y="12" width="7" height="9"></rect>
+                  <rect x="3" y="16" width="7" height="5"></rect>
+                </svg>
+                <span>Dashboard</span>
+              </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="patients.html" class="sidebar-nav-link">
+              <span class="sidebar-nav-label-group">
+                <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                <span>Patients</span>
+              </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="predictions.html" class="sidebar-nav-link is-active" aria-current="page">
+              <span class="sidebar-nav-label-group">
+                <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M2 12h5l3 7 4-14 3 7h5"></path>
+                </svg>
+                <span>Predictions &amp; XAI</span>
+              </span>
+              <span class="badge badge-info" style="font-size: 0.65rem;">Active</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="alerts.html" class="sidebar-nav-link">
+              <span class="sidebar-nav-label-group">
+                <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                  <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                </svg>
+                <span>Alerts Triage</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="sidebar-nav-section-title" style="margin-top: var(--space-md);">Governance</div>
+        <ul class="sidebar-nav-list">
+          <li class="sidebar-nav-item">
+            <a href="users.html" class="sidebar-nav-link">
+              <span class="sidebar-nav-label-group">
+                <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span>User Management</span>
+              </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="reports.html" class="sidebar-nav-link">
+              <span class="sidebar-nav-label-group">
+                <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+                <span>Reports</span>
+              </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="audit-logs.html" class="sidebar-nav-link">
+              <span class="sidebar-nav-label-group">
+                <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                <span>Audit Logs</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Sidebar Footer -->
+      <div class="sidebar-footer">
+        <div class="sidebar-user-block">
+          <div class="sidebar-avatar" id="sidebar-user-initials" aria-hidden="true">VG</div>
+          <div class="sidebar-user-info">
+            <div class="sidebar-user-name" id="sidebar-user-name">Loading...</div>
+            <div class="sidebar-user-role" id="sidebar-user-role">Authorized Staff</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Region -->
+    <div class="app-main">
+
+      <!-- Topbar -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button type="button" id="sidebar-toggle-btn" class="topbar-toggle-btn" aria-label="Toggle navigation drawer" aria-expanded="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="20" height="20">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+          <nav aria-label="Breadcrumb">
+            <ol class="breadcrumb-list" style="display: flex; gap: var(--space-2xs); list-style: none; font-size: var(--font-size-xs); color: var(--color-text-secondary); margin: 0; padding: 0;">
+              <li><a href="dashboard.html" style="color: var(--color-text-muted); text-decoration: none;">Home</a></li>
+              <li aria-hidden="true" style="color: var(--color-border-dark);">&rsaquo;</li>
+              <li aria-current="page" style="color: var(--color-primary-navy); font-weight: var(--font-weight-medium);">Predictions &amp; Explainability</li>
+            </ol>
+          </nav>
+        </div>
+
+        <div class="topbar-right">
+          <span class="badge badge-neutral" style="font-size: var(--font-size-2xs); letter-spacing: 0.04em;">DEMO SIMULATION</span>
+          <div class="topbar-user-badge">
+            <span id="topbar-user-role" class="badge badge-info">Staff Access</span>
+          </div>
+          <button type="button" id="btn-logout" class="btn btn-outline btn-sm" aria-label="Sign out of current demonstration session">Sign Out</button>
+        </div>
+      </header>
+
+      <!-- Main Container Body -->
+      <main id="main-predictions" class="app-main-content">
+        <div class="predictions-container">
+
+          <!-- Header & Title -->
+          <div class="dashboard-header">
+            <div class="dashboard-title-group">
+              <div>
+                <h1 class="dashboard-title">Predictive Deterioration Scoring &amp; Explainability</h1>
+                <p class="dashboard-subtitle">Simulated machine learning inferences, deterioration risk stratification, and feature attributions</p>
+              </div>
+            </div>
+
+            <!-- Academic Prototype Disclaimer Banner -->
+            <div class="alert alert-info dashboard-disclaimer-banner" role="note">
+              <svg class="alert-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+              </svg>
+              <div class="alert-content">
+                <div class="alert-title">Academic Research Prototype Notice</div>
+                <div>
+                  All deterioration risk scores, feature attribution weights, and risk classifications are deterministic simulated demonstrations. Research prototype output. Not clinically validated. <code>source: "simulated"</code>.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Predictions Toolbar -->
+          <section class="predictions-toolbar" aria-label="Prediction filters and search controls">
+            <div class="predictions-toolbar-top">
+              
+              <!-- Keyword Search -->
+              <div class="predictions-search-wrapper">
+                <svg class="predictions-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input
+                  type="search"
+                  id="predictions-search-input"
+                  class="form-control predictions-search-input"
+                  placeholder="Search by Prediction ID, Patient ID, or Condition..."
+                  aria-label="Search prediction records"
+                  autocomplete="off"
+                >
+                <button type="button" id="predictions-search-clear" class="predictions-search-clear" aria-label="Clear search input">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="14" height="14">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
+                </button>
+              </div>
+
+              <!-- Filter Dropdowns -->
+              <div class="predictions-toolbar-filters">
+                
+                <!-- Risk Level Filter -->
+                <select id="filter-risk" class="form-control predictions-filter-select" aria-label="Filter by risk category">
+                  <option value="all">All Risk Tiers</option>
+                  <option value="Critical">Critical Risk</option>
+                  <option value="High">High Risk</option>
+                  <option value="Moderate">Moderate Risk</option>
+                  <option value="Low">Low Risk</option>
+                </select>
+
+                <!-- Status Filter -->
+                <select id="filter-status" class="form-control predictions-filter-select" aria-label="Filter by prediction status">
+                  <option value="all">All Statuses</option>
+                  <option value="Completed">Completed</option>
+                  <option value="Flagged">Flagged</option>
+                  <option value="Review Requested">Review Requested</option>
+                  <option value="Critical Alert">Critical Alert</option>
+                </select>
+
+                <!-- Model Version Filter -->
+                <select id="filter-model" class="form-control predictions-filter-select" aria-label="Filter by model version">
+                  <option value="all">All Models</option>
+                  <option value="v1.4.2-sim">v1.4.2-sim</option>
+                  <option value="v1.4.1-sim">v1.4.1-sim</option>
+                  <option value="v1.3.9-sim">v1.3.9-sim</option>
+                </select>
+
+              </div>
+
+              <!-- Toolbar Actions -->
+              <div class="predictions-toolbar-actions">
+                <button type="button" id="btn-reset-filters" class="btn btn-outline btn-sm" aria-label="Reset all search filters">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="14" height="14">
+                    <polyline points="1 4 1 10 7 10"></polyline>
+                    <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+                  </svg>
+                  <span>Reset</span>
+                </button>
+                <button type="button" id="btn-refresh" class="btn btn-outline btn-sm" aria-label="Refresh prediction data">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="14" height="14">
+                    <path d="M23 4v6h-6"></path>
+                    <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                  </svg>
+                  <span>Refresh</span>
+                </button>
+              </div>
+
+            </div>
+          </section>
+
+          <!-- Prediction List Table Card -->
+          <section class="predictions-table-card" aria-labelledby="predictions-table-title">
+            <div class="predictions-table-header">
+              <div id="predictions-table-title" class="predictions-table-header-title">
+                <span>Model Inferences &amp; Risk Evaluations</span>
+                <span id="predictions-count-badge" class="badge badge-neutral" style="font-size: 0.75rem;">Loading...</span>
+              </div>
+              <div style="font-size: var(--font-size-xs); color: var(--color-text-muted);">
+                Showing synthetic cohort deterioration evaluations
+              </div>
+            </div>
+
+            <!-- Responsive Scroller -->
+            <div class="table-responsive-wrapper">
+              <table id="predictions-table" class="predictions-table" aria-label="Predictive deterioration scoring log">
+                <thead>
+                  <tr id="predictions-table-head-row">
+                    <!-- Dynamic sortable header columns populated via UIComponents.createSortableHeader -->
+                  </tr>
+                </thead>
+                <tbody id="predictions-table-body" aria-live="polite">
+                  <!-- Dynamically populated rows -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Accessible Pagination -->
+            <div id="predictions-pagination-container">
+              <!-- Dynamically populated via UIComponents.createPagination -->
+            </div>
+          </section>
+
+        </div>
+      </main>
+
+      <!-- App Shell Footer -->
+      <footer style="padding: var(--space-md) var(--space-xl); border-top: 1px solid var(--color-border-light); background-color: var(--color-bg-surface); font-size: var(--font-size-xs); color: var(--color-text-muted); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-xs);">
+        <div>VitalGuard AI &bull; Predictive Intelligence Module (Phase 4 Build)</div>
+        <div>Academic Prototype &bull; Fictional Telemetry &bull; <code>source: "simulated"</code></div>
+      </footer>
+
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Scripts (Classic JS, Dependency Ordered) -->
+  <script src="../assets/js/config.js"></script>
+  <script src="../assets/js/mock-data.js"></script>
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/auth.js"></script>
+  <script src="../assets/js/utils.js"></script>
+  <script src="../assets/js/ui-components.js"></script>
+  <script src="../assets/js/predictions.js"></script>
+</body>
+</html>

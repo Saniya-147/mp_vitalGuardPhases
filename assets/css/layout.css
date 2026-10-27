@@ -1,0 +1,390 @@
+/**
+ * VitalGuard AI - Application Layout Foundation
+ * layout.css
+ * Foundational layout utilities, authentication container layouts,
+ * and future administrative shell placeholders for subsequent phases.
+ */
+
+/* ==========================================================================
+   Page & Auth Container Layouts
+   ========================================================================== */
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #0B1F3A 0%, #162E52 50%, #071527 100%);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Subtle decorative clinical / algorithmic background grid */
+.auth-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(14, 159, 168, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(56, 189, 248, 0.10) 0%, transparent 45%),
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 32px 32px, 32px 32px;
+  pointer-events: none;
+}
+
+.auth-header {
+  position: relative;
+  z-index: 10;
+}
+
+.auth-main {
+  position: relative;
+  z-index: 10;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl) var(--space-md);
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 28rem; /* 448px */
+  margin: 0 auto;
+}
+
+.auth-card {
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: var(--space-xl) var(--space-xl);
+}
+
+.auth-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: var(--space-lg);
+}
+
+.auth-logo-wrapper {
+  width: 4rem;
+  height: 4rem;
+  margin-bottom: var(--space-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-navy);
+  letter-spacing: -0.02em;
+}
+
+.auth-subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-top: var(--space-3xs);
+}
+
+.auth-footer {
+  position: relative;
+  z-index: 10;
+  padding: var(--space-md) var(--space-md) var(--space-lg);
+  text-align: center;
+  font-size: var(--font-size-xs);
+  color: rgba(226, 232, 240, 0.7);
+}
+
+.auth-footer a {
+  color: var(--color-accent-teal-light);
+}
+
+/* ==========================================================================
+   Phase 2 App Shell Layout Architecture
+   ========================================================================== */
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+  background-color: var(--color-bg-page);
+}
+
+/* Sidebar Navigation */
+.app-sidebar {
+  width: 17rem;
+  background-color: var(--color-primary-navy);
+  color: var(--color-text-inverse);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-normal);
+  z-index: 200;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sidebar-brand {
+  padding: var(--space-lg) var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: var(--color-primary-navy-dark);
+}
+
+.sidebar-logo {
+  width: 2.25rem;
+  height: 2.25rem;
+  flex-shrink: 0;
+}
+
+.sidebar-title {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-inverse);
+  line-height: 1.2;
+}
+
+.sidebar-subtitle {
+  font-size: var(--font-size-2xs);
+  color: var(--color-accent-teal-light);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.sidebar-nav-container {
+  flex: 1;
+  padding: var(--space-md) var(--space-xs);
+  overflow-y: auto;
+}
+
+.sidebar-nav-section-title {
+  font-size: var(--font-size-2xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(226, 232, 240, 0.5);
+  padding: var(--space-xs) var(--space-sm);
+  font-weight: var(--font-weight-semibold);
+}
+
+.sidebar-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sidebar-nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.625rem var(--space-sm);
+  border-radius: var(--radius-md);
+  color: rgba(226, 232, 240, 0.8);
+  text-decoration: none;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.sidebar-nav-link:hover:not(.is-disabled) {
+  background-color: rgba(255, 255, 255, 0.07);
+  color: var(--color-text-inverse);
+}
+
+.sidebar-nav-link.is-active {
+  background-color: var(--color-accent-teal);
+  color: var(--color-text-inverse);
+  font-weight: var(--font-weight-semibold);
+  box-shadow: var(--shadow-sm);
+}
+
+.sidebar-nav-link.is-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.sidebar-nav-label-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.sidebar-nav-icon {
+  width: 1.125rem;
+  height: 1.125rem;
+  flex-shrink: 0;
+}
+
+.sidebar-footer {
+  padding: var(--space-md);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: var(--color-primary-navy-surface);
+}
+
+.sidebar-user-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.sidebar-user-avatar {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background-color: var(--color-accent-teal-dark);
+  color: var(--color-text-inverse);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-xs);
+  flex-shrink: 0;
+}
+
+.sidebar-user-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.sidebar-user-name {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-inverse);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-user-role {
+  font-size: var(--font-size-2xs);
+  color: var(--color-accent-teal-light);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Main Content Area */
+.app-main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background-color: var(--color-bg-page);
+}
+
+/* Administrative Topbar */
+.app-topbar {
+  height: 4rem;
+  background-color: var(--color-bg-surface);
+  border-bottom: 1px solid var(--color-border-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-xl);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-xs);
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.topbar-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.topbar-breadcrumb-active {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary-navy);
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.menu-toggle-btn {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--color-border-medium);
+  border-radius: var(--radius-md);
+  padding: 0.4rem;
+  color: var(--color-primary-navy);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-toggle-btn:focus-visible {
+  outline: 2px solid var(--color-accent-teal);
+}
+
+.sidebar-backdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(11, 31, 58, 0.5);
+  backdrop-filter: blur(2px);
+  z-index: 190;
+}
+
+.sidebar-backdrop.is-visible {
+  display: block;
+}
+
+.app-content-body {
+  flex: 1;
+  padding: var(--space-xl);
+  max-width: 90rem;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Responsive Shell Breakpoints */
+@media (max-width: 1024px) {
+  .app-sidebar {
+    width: 15rem;
+  }
+  .app-topbar {
+    padding: 0 var(--space-md);
+  }
+  .app-content-body {
+    padding: var(--space-md);
+  }
+}
+
+@media (max-width: 768px) {
+  .menu-toggle-btn {
+    display: inline-flex;
+  }
+  .app-sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-100%);
+    box-shadow: var(--shadow-xl);
+  }
+  .app-sidebar.is-open {
+    transform: translateX(0);
+  }
+}

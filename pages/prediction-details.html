@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="VitalGuard AI - Prediction Details & Explainability (XAI) Feature Attribution">
+  <title>VitalGuard AI - Prediction Details</title>
+
+  <!-- Foundational Stylesheets -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/predictions.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body>
+
+  <!-- Accessible Skip Link -->
+  <a href="#main-prediction-details" class="sr-only">Skip to prediction details content</a>
+
+  <!-- Mobile Sidebar Backdrop -->
+  <div id="sidebar-backdrop" class="sidebar-backdrop" aria-hidden="true"></div>
+
+  <!-- App Shell -->
+  <div class="app-shell">
+
+    <!-- Collapsible Sidebar -->
+    <aside id="app-sidebar" class="app-sidebar" aria-label="Main Navigation">
+      
+      <!-- Brand Header -->
+      <div class="sidebar-brand">
+        <img src="../assets/images/vitalguard-logo.svg" alt="VitalGuard AI Emblem" class="sidebar-logo" width="36" height="36">
+        <div>
+          <div class="sidebar-title">VitalGuard AI</div>
+          <div class="sidebar-subtitle">Clinical Intelligence</div>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="sidebar-nav-container">
+        <div class="sidebar-nav-section-title">Operational Views</div>
+        <ul class="sidebar-nav-list">
+          <li class="sidebar-nav-item">
+            <a href="dashboard.html" class="sidebar-nav-link">
+              <span class="sidebar-nav-label-group">
+                <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="3" y="3" width="7" height="9"></rect>
+                  <rect x="14" y="3" width="7" height="5"></rect>
+                  <rect x="14" y="12" width="7" height="9"></rect>
+                  <rect x="3" y="16" width="7" height="5"></rect>
+                </svg>
+                <span>Dashboard</span>
+              </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="patients.html" class="sidebar-nav-link">
+              <span class="sidebar-nav-label-group">
+                <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                <span>Patients</span>
+              </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="predictions.html" class="sidebar-nav-link is-active" aria-current="page">
+              <span class="sidebar-nav-label-group">
+                <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M2 12h5l3 7 4-14 3 7h5"></path>
+                </svg>
+                <span>Predictions &amp; XAI</span>
+              </span>
+              <span class="badge badge-info" style="font-size: 0.65rem;">Active</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="alerts.html" class="sidebar-nav-link">
+              <span class="sidebar-nav-label-group">
+                <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                  <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                </svg>
+                <span>Alerts Triage</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="sidebar-nav-section-title" style="margin-top: var(--space-md);">Governance</div>
+        <ul class="sidebar-nav-list">
+          <li class="sidebar-nav-item">
+            <a href="users.html" class="sidebar-nav-link">
+              <span class="sidebar-nav-label-group">
+                <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span>User Management</span>
+              </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="reports.html" class="sidebar-nav-link">
+              <span class="sidebar-nav-label-group">
+                <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+                <span>Reports</span>
+              </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="audit-logs.html" class="sidebar-nav-link">
+              <span class="sidebar-nav-label-group">
+                <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                <span>Audit Logs</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Sidebar Footer -->
+      <div class="sidebar-footer">
+        <div class="sidebar-user-block">
+          <div class="sidebar-avatar" id="sidebar-user-initials" aria-hidden="true">VG</div>
+          <div class="sidebar-user-info">
+            <div class="sidebar-user-name" id="sidebar-user-name">Loading...</div>
+            <div class="sidebar-user-role" id="sidebar-user-role">Authorized Staff</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Region -->
+    <div class="app-main">
+
+      <!-- Topbar -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button type="button" id="sidebar-toggle-btn" class="topbar-toggle-btn" aria-label="Toggle navigation drawer" aria-expanded="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="20" height="20">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+          <nav aria-label="Breadcrumb">
+            <ol class="breadcrumb-list" style="display: flex; gap: var(--space-2xs); list-style: none; font-size: var(--font-size-xs); color: var(--color-text-secondary); margin: 0; padding: 0;">
+              <li><a href="dashboard.html" style="color: var(--color-text-muted); text-decoration: none;">Home</a></li>
+              <li aria-hidden="true" style="color: var(--color-border-dark);">&rsaquo;</li>
+              <li><a href="predictions.html" style="color: var(--color-text-muted); text-decoration: none;">Predictions</a></li>
+              <li aria-hidden="true" style="color: var(--color-border-dark);">&rsaquo;</li>
+              <li aria-current="page" id="breadcrumb-prediction-id" style="color: var(--color-primary-navy); font-weight: var(--font-weight-medium);">Prediction Details</li>
+            </ol>
+          </nav>
+        </div>
+
+        <div class="topbar-right">
+          <span class="badge badge-neutral" style="font-size: var(--font-size-2xs); letter-spacing: 0.04em;">DEMO SIMULATION</span>
+          <div class="topbar-user-badge">
+            <span id="topbar-user-role" class="badge badge-info">Staff Access</span>
+          </div>
+          <button type="button" id="btn-logout" class="btn btn-outline btn-sm" aria-label="Sign out of current demonstration session">Sign Out</button>
+        </div>
+      </header>
+
+      <!-- Main Container Body -->
+      <main id="main-prediction-details" class="app-main-content">
+        <div class="predictions-container" id="prediction-details-wrapper">
+
+          <!-- Top Back Navigation -->
+          <div style="margin-bottom: var(--space-md); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--space-sm);">
+            <a href="predictions.html" class="btn btn-outline btn-sm" aria-label="Return to predictions list">
+              &larr; Back to Predictions
+            </a>
+            <div id="patient-record-shortcut">
+              <!-- Dynamically populated link to patient-details.html?id=... -->
+            </div>
+          </div>
+
+          <!-- Loading State Placeholder -->
+          <div id="prediction-loading-state" class="card" style="text-align: center; padding: var(--space-3xl);">
+            <div class="spinner" style="margin: 0 auto var(--space-md) auto;"></div>
+            <div style="color: var(--color-text-secondary);">Loading prediction record and explainability data...</div>
+          </div>
+
+          <!-- Error State Placeholder -->
+          <div id="prediction-error-state" style="display: none;">
+            <!-- Populated via UIComponents.createErrorState -->
+          </div>
+
+          <!-- Main Prediction Content (Initially Hidden until loaded) -->
+          <div id="prediction-loaded-content" style="display: none;">
+
+            <!-- Header & Badge Bar -->
+            <div class="prediction-details-header">
+              <div class="dashboard-title-group">
+                <div>
+                  <div style="display: flex; align-items: center; gap: var(--space-sm); flex-wrap: wrap; margin-bottom: var(--space-2xs);">
+                    <h1 class="dashboard-title" id="pred-header-title">PRED-XXXX</h1>
+                    <span id="pred-header-risk-badge" class="badge badge-neutral">Risk Level</span>
+                    <span id="pred-header-status-badge" class="badge badge-info">Completed</span>
+                    <span class="badge badge-neutral" style="font-size: var(--font-size-2xs);">source: "simulated"</span>
+                  </div>
+                  <p class="dashboard-subtitle" id="pred-header-subtitle">
+                    Inference generated on simulated physiological telemetry feed
+                  </p>
+                </div>
+              </div>
+
+              <!-- Academic Prototype Disclaimer Banner -->
+              <div class="alert alert-info dashboard-disclaimer-banner" role="note" style="margin-top: var(--space-md);">
+                <svg class="alert-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                </svg>
+                <div class="alert-content">
+                  <div class="alert-title">Academic Research Prototype Notice</div>
+                  <div>
+                    Research prototype output. Not clinically validated. Deterioration scores and feature weights are synthetic demonstration indicators without biological verification.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Metadata Cards Grid -->
+            <section class="prediction-details-meta-grid" aria-label="Prediction metadata and score breakdown">
+              
+              <!-- Card 1: Patient & Clinical Context -->
+              <div class="meta-metric-card">
+                <div class="meta-metric-label">Subject &amp; Clinical Context</div>
+                <div class="meta-metric-value" id="meta-patient-id-value">--</div>
+                <div class="meta-metric-subtext" id="meta-patient-name-subtext">Subject Cohort Record</div>
+                <div style="margin-top: var(--space-xs); font-size: var(--font-size-xs); color: var(--color-text-secondary); display: flex; flex-direction: column; gap: 4px;">
+                  <div><strong>Prediction Horizon:</strong> <span id="meta-horizon">--</span></div>
+                  <div><strong>Generated:</strong> <span id="meta-generated-at">--</span></div>
+                </div>
+              </div>
+
+              <!-- Card 2: Model & Execution Details -->
+              <div class="meta-metric-card">
+                <div class="meta-metric-label">Model Architecture</div>
+                <div class="meta-metric-value" style="font-size: var(--font-size-xl);" id="meta-model-version">--</div>
+                <div class="meta-metric-subtext" id="meta-target-condition">Target Condition Indicator</div>
+                <div style="margin-top: var(--space-xs); font-size: var(--font-size-xs); color: var(--color-text-secondary); display: flex; flex-direction: column; gap: 4px;">
+                  <div><strong>Inference Confidence:</strong> <span id="meta-confidence">--</span></div>
+                  <div><strong>Execution Status:</strong> <span id="meta-status">--</span></div>
+                </div>
+              </div>
+
+              <!-- Card 3: Deterioration Risk Score Gauge -->
+              <div class="meta-metric-card">
+                <div class="meta-metric-label">Deterioration Risk Score</div>
+                <div class="meta-metric-value">
+                  <span id="meta-score-value">0.00</span>
+                  <span style="font-size: var(--font-size-sm); color: var(--color-text-muted); font-weight: normal;">/ 1.00</span>
+                </div>
+                <!-- Visual Gauge Bar -->
+                <div class="score-gauge-bar-track">
+                  <div id="meta-score-bar-fill" class="score-gauge-bar-fill" style="width: 0%; background-color: var(--color-accent-teal);"></div>
+                </div>
+                <div class="meta-metric-subtext" style="margin-top: var(--space-xs);">
+                  Simulated index score. Not a calibrated clinical survival probability.
+                </div>
+              </div>
+
+            </section>
+
+            <!-- Explainability & Feature Attributions (XAI) Section -->
+            <section class="xai-card" id="xai-container" aria-labelledby="xai-section-title">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--space-sm); margin-bottom: var(--space-lg);">
+                <div>
+                  <h2 id="xai-section-title" style="font-size: var(--font-size-lg); font-weight: var(--font-weight-bold); color: var(--color-primary-navy); margin-bottom: var(--space-3xs);">
+                    Explainability &amp; Feature Attribution (XAI)
+                  </h2>
+                  <p style="font-size: var(--font-size-xs); color: var(--color-text-muted); margin: 0;">
+                    Synthesized feature contribution weights highlighting physiological telemetry drivers
+                  </p>
+                </div>
+                <span class="badge badge-neutral" style="font-size: var(--font-size-2xs);">SHAP/Feature Attribution Proxy</span>
+              </div>
+
+              <!-- Container for Either Chart & Breakdown OR Exact Fallback Notice -->
+              <div id="xai-content-area">
+                <!-- Dynamically populated: either XAI chart + textual table, or "Explanation not available for this prediction." -->
+              </div>
+            </section>
+
+          </div>
+
+        </div>
+      </main>
+
+      <!-- App Shell Footer -->
+      <footer style="padding: var(--space-md) var(--space-xl); border-top: 1px solid var(--color-border-light); background-color: var(--color-bg-surface); font-size: var(--font-size-xs); color: var(--color-text-muted); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-xs);">
+        <div>VitalGuard AI &bull; Predictive Intelligence Module (Phase 4 Build)</div>
+        <div>Academic Prototype &bull; Fictional Telemetry &bull; <code>source: "simulated"</code></div>
+      </footer>
+
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- External Chart.js Library via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+  <!-- Application Scripts (Classic JS, Dependency Ordered) -->
+  <script src="../assets/js/config.js"></script>
+  <script src="../assets/js/mock-data.js"></script>
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/auth.js"></script>
+  <script src="../assets/js/utils.js"></script>
+  <script src="../assets/js/ui-components.js"></script>
+  <script src="../assets/js/prediction-details.js"></script>
+</body>
+</html>

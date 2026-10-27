@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>VitalGuard AI - Redirecting...</title>
+  
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  
+  <style>
+    .redirect-shell {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-lg);
+      background-color: var(--color-bg-page);
+    }
+    .redirect-card {
+      max-width: 28rem;
+      width: 100%;
+      text-align: center;
+      background-color: var(--color-bg-surface);
+      padding: var(--space-xl);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--color-border-light);
+    }
+  </style>
+
+  <!-- Configuration and Authentication Services -->
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/auth.js"></script>
+
+  <script>
+    (function () {
+      'use strict';
+      
+      /**
+       * VitalGuard AI Entry-Point Redirect Contract
+       * -------------------------------------------------------------
+       * 1. If an active demo session exists -> redirect to 'pages/dashboard.html'
+       *    (NOTE: pages/dashboard.html is reserved for Phase 2 and is intentionally
+       *     not implemented in Phase 1 per project specifications).
+       * 2. If no demo session exists -> redirect to 'login.html'
+       * -------------------------------------------------------------
+       */
+      function performRedirect() {
+        var auth = window.VitalGuardAuth;
+        var user = auth ? auth.getCurrentUser() : null;
+
+        if (user) {
+          // Documented target: pages/dashboard.html belongs to Phase 2
+          window.location.replace('pages/dashboard.html');
+        } else {
+          window.location.replace('login.html');
+        }
+      }
+
+      // Execute redirect immediately or on DOM ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', performRedirect);
+      } else {
+        performRedirect();
+      }
+    })();
+  </script>
+</head>
+<body>
+  <div class="redirect-shell">
+    <div class="redirect-card">
+      <div style="margin-bottom: var(--space-md);">
+        <span class="spinner spinner-primary" style="width: 2rem; height: 2rem; border-width: 3px;" aria-hidden="true"></span>
+      </div>
+      <h1 style="font-size: var(--font-size-lg); margin-bottom: var(--space-xs);">VitalGuard AI</h1>
+      <p style="font-size: var(--font-size-sm); color: var(--color-text-secondary); margin-bottom: var(--space-md);">
+        Evaluating session authentication...
+      </p>
+      <noscript>
+        <div class="alert alert-warning" style="text-align: left; font-size: var(--font-size-xs);">
+          <div class="alert-title">JavaScript Required</div>
+          <div>Please enable JavaScript or <a href="login.html">click here to proceed to the login page</a>.</div>
+        </div>
+      </noscript>
+    </div>
+  </div>
+</body>
+</html>

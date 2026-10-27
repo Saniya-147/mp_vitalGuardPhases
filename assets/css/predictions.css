@@ -1,0 +1,414 @@
+/**
+ * VitalGuard AI - Predictions & Explainability Stylesheet
+ * assets/css/predictions.css
+ *
+ * Implements styling for:
+ * - Predictions toolbar, keyword search, and dropdown filters
+ * - Responsive predictions table with sortable column headers
+ * - Prediction detail cards: patient summary, model metadata, deterioration gauge
+ * - XAI feature attribution horizontal bar chart container & textual table
+ * - Responsive breakpoints for 1440px, 1024px, 768px, and 375px viewports
+ */
+
+/* ==========================================================================
+   Page-level Horizontal Containment & Structural Defaults
+   ========================================================================== */
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+.app-shell {
+  max-width: 100vw;
+  overflow-x: hidden;
+  min-width: 0;
+}
+
+.app-main-content {
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.predictions-container {
+  min-width: 0;
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   Predictions Toolbar & Filter Controls
+   ========================================================================== */
+.predictions-toolbar {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md) var(--space-lg);
+  margin-bottom: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  min-width: 0;
+  max-width: 100%;
+}
+
+.predictions-toolbar-top {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  width: 100%;
+  min-width: 0;
+}
+
+.predictions-search-wrapper {
+  flex: 1 1 280px;
+  min-width: 220px;
+  position: relative;
+}
+
+.predictions-search-input {
+  width: 100%;
+  padding-left: 2.5rem;
+  padding-right: 2rem;
+  font-size: var(--font-size-sm);
+  height: 42px;
+}
+
+.predictions-search-icon {
+  position: absolute;
+  left: 0.875rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+
+.predictions-search-clear {
+  position: absolute;
+  right: 0.625rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  padding: 0.25rem;
+  display: none;
+  border-radius: var(--radius-full);
+}
+
+.predictions-search-clear:hover,
+.predictions-search-clear:focus {
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-subtle);
+}
+
+.predictions-toolbar-filters {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  flex: 2 1 auto;
+  min-width: 0;
+}
+
+.predictions-filter-select {
+  min-width: 140px;
+  flex: 1 1 auto;
+  font-size: var(--font-size-sm);
+  height: 42px;
+}
+
+.predictions-toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-left: auto;
+  flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   Table Card & Responsive Horizontal Scroller
+   ========================================================================== */
+.predictions-table-card {
+  min-width: 0;
+  max-width: 100%;
+  width: 100%;
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.predictions-table-header {
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--color-border-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  background-color: var(--color-bg-subtle);
+}
+
+.predictions-table-header-title {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-navy);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.table-responsive-wrapper {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.predictions-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-sm);
+  white-space: nowrap;
+}
+
+.predictions-table th,
+.predictions-table td {
+  padding: 0.875rem 1rem;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.predictions-table thead {
+  background-color: var(--color-bg-subtle);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.predictions-table tbody tr {
+  border-bottom: 1px solid var(--color-border-light);
+  transition: background-color var(--transition-fast);
+}
+
+.predictions-table tbody tr:hover {
+  background-color: var(--color-bg-subtle);
+}
+
+.predictions-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.sortable-th {
+  cursor: pointer;
+  user-select: none;
+  transition: background-color var(--transition-fast);
+}
+
+.sortable-th:hover {
+  background-color: var(--color-border-light);
+}
+
+.sortable-th-btn {
+  background: none;
+  border: none;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-navy);
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  cursor: pointer;
+  padding: 0;
+  width: 100%;
+  text-align: left;
+}
+
+.sortable-th-icon {
+  width: 14px;
+  height: 14px;
+  color: var(--color-text-muted);
+}
+
+.sortable-th[aria-sort="ascending"] .sortable-th-icon,
+.sortable-th[aria-sort="descending"] .sortable-th-icon {
+  color: var(--color-accent-teal);
+}
+
+/* ==========================================================================
+   Prediction Details Specific Styles
+   ========================================================================== */
+.prediction-details-header {
+  margin-bottom: var(--space-xl);
+}
+
+.prediction-details-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
+}
+
+.meta-metric-card {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.meta-metric-label {
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+}
+
+.meta-metric-value {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-navy);
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-xs);
+}
+
+.meta-metric-subtext {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+}
+
+/* Deterioration Score Gauge */
+.score-gauge-bar-track {
+  width: 100%;
+  height: 12px;
+  background-color: var(--color-bg-subtle);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-top: var(--space-xs);
+  position: relative;
+}
+
+.score-gauge-bar-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width 0.6s ease-out;
+}
+
+/* XAI Explainability Section */
+.xai-card {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-xl);
+  margin-bottom: var(--space-xl);
+}
+
+.xai-summary-callout {
+  background-color: var(--color-accent-teal-tint);
+  border-left: 4px solid var(--color-accent-teal);
+  padding: var(--space-md) var(--space-lg);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  margin-bottom: var(--space-xl);
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+  color: var(--color-primary-navy);
+}
+
+.xai-chart-wrapper {
+  position: relative;
+  height: 320px;
+  width: 100%;
+  margin-bottom: var(--space-xl);
+}
+
+.xai-features-table-wrapper {
+  margin-top: var(--space-lg);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .predictions-toolbar-top {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .predictions-search-wrapper {
+    flex: 1 1 100%;
+  }
+
+  .predictions-toolbar-filters {
+    width: 100%;
+  }
+
+  .predictions-toolbar-actions {
+    margin-left: 0;
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 768px) {
+  .predictions-toolbar {
+    padding: var(--space-md);
+  }
+
+  .predictions-toolbar-filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .predictions-filter-select {
+    width: 100%;
+  }
+
+  .predictions-toolbar-actions {
+    justify-content: stretch;
+  }
+
+  .predictions-toolbar-actions .btn {
+    flex: 1 1 auto;
+  }
+
+  .xai-chart-wrapper {
+    height: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .predictions-table th,
+  .predictions-table td {
+    padding: 0.625rem 0.75rem;
+    font-size: var(--font-size-xs);
+  }
+
+  .meta-metric-value {
+    font-size: var(--font-size-xl);
+  }
+
+  .xai-card {
+    padding: var(--space-md);
+  }
+}

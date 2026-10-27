@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="VitalGuard AI - Immutable System Audit Trail and Compliance Logs">
+  <title>VitalGuard AI - Audit Trail Logs</title>
+
+  <!-- Foundational Stylesheets -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/audit-logs.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body>
+
+  <!-- Accessible Skip Link -->
+  <a href="#main-audit-logs" class="sr-only">Skip to audit log content</a>
+
+  <!-- Mobile Sidebar Backdrop -->
+  <div id="sidebar-backdrop" class="sidebar-backdrop" aria-hidden="true"></div>
+
+  <!-- App Shell -->
+  <div class="app-shell">
+
+    <!-- Collapsible Sidebar -->
+    <aside id="app-sidebar" class="app-sidebar" aria-label="Main Navigation">
+      
+      <!-- Brand Header -->
+      <div class="sidebar-brand">
+        <img src="../assets/images/vitalguard-logo.svg" alt="VitalGuard AI Emblem" class="sidebar-logo" width="36" height="36">
+        <div>
+          <div class="sidebar-title">VitalGuard AI</div>
+          <div class="sidebar-subtitle">Clinical Intelligence</div>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="sidebar-nav-container">
+        <div class="sidebar-nav-section-title">Operational Views</div>
+        <ul class="sidebar-nav-list">
+          <li class="sidebar-nav-item">
+            <a href="dashboard.html" class="sidebar-nav-link">
+              <span class="sidebar-nav-label-group">
+                <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="3" y="3" width="7" height="9"></rect>
+                  <rect x="14" y="3" width="7" height="5"></rect>
+                  <rect x="14" y="12" width="7" height="9"></rect>
+                  <rect x="3" y="16" width="7" height="5"></rect>
+                </svg>
+                <span>Dashboard</span>
+              </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="patients.html" class="sidebar-nav-link">
+              <span class="sidebar-nav-label-group">
+                <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                <span>Patients</span>
+              </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="predictions.html" class="sidebar-nav-link">
+              <span class="sidebar-nav-label-group">
+                <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M2 12h5l3 7 4-14 3 7h5"></path>
+                </svg>
+                <span>Predictions &amp; XAI</span>
+              </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="alerts.html" class="sidebar-nav-link">
+              <span class="sidebar-nav-label-group">
+                <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                  <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                </svg>
+                <span>Alerts Triage</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="sidebar-nav-section-title" style="margin-top: var(--space-md);">Governance</div>
+        <ul class="sidebar-nav-list">
+          <li class="sidebar-nav-item">
+            <a href="users.html" class="sidebar-nav-link">
+              <span class="sidebar-nav-label-group">
+                <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span>User Management</span>
+              </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="reports.html" class="sidebar-nav-link">
+              <span class="sidebar-nav-label-group">
+                <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+                <span>Reports</span>
+              </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="audit-logs.html" class="sidebar-nav-link is-active" aria-current="page">
+              <span class="sidebar-nav-label-group">
+                <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                <span>Audit Logs</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Sidebar Footer -->
+      <div class="sidebar-footer">
+        <div class="sidebar-user-block">
+          <div class="sidebar-avatar" id="sidebar-user-initials" aria-hidden="true">VG</div>
+          <div class="sidebar-user-details">
+            <div class="sidebar-user-name" id="sidebar-user-name">Loading...</div>
+            <div class="sidebar-user-role" id="sidebar-user-role">Authorized User</div>
+          </div>
+        </div>
+        <button type="button" class="btn btn-outline btn-sm sidebar-logout-btn" id="btn-sidebar-logout">
+          Sign Out
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="app-main-wrapper">
+      
+      <!-- Topbar Header -->
+      <header class="app-topbar">
+        <div class="topbar-left">
+          <button type="button" class="sidebar-toggle-btn" id="btn-toggle-sidebar" aria-label="Toggle navigation menu">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+          <nav aria-label="Breadcrumb">
+            <ol class="breadcrumb-list">
+              <li class="breadcrumb-item"><a href="dashboard.html">Home</a></li>
+              <li class="breadcrumb-item">Governance</li>
+              <li class="breadcrumb-item is-active" aria-current="page">Audit Trail Logs</li>
+            </ol>
+          </nav>
+        </div>
+
+        <div class="topbar-right">
+          <span class="badge badge-warning" style="font-size: 0.75rem;">
+            Simulation Mode
+          </span>
+          <div class="topbar-user-badge">
+            <span class="topbar-user-name" id="topbar-user-name">User</span>
+            <span class="topbar-user-role-badge" id="topbar-user-role">Auditor</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Operational View -->
+      <main id="main-audit-logs" class="app-content-area" tabindex="-1">
+        
+        <!-- Persistent Simulation Banner -->
+        <div class="demo-banner" role="region" aria-label="Simulation notice">
+          <div class="demo-banner-content">
+            <svg class="demo-banner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            <div>
+              <strong>Academic Demonstration Environment:</strong>
+              Audit event logs, actor identities, and security timestamps are simulated records.
+            </div>
+          </div>
+        </div>
+
+        <!-- Access Denied Card (Shown for Healthcare Staff lacking view:audit_logs) -->
+        <div id="access-denied-view" class="access-denied-container" style="display: none;">
+          <svg class="access-denied-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          <h2 class="access-denied-title">Audit Trail Access Restricted</h2>
+          <p class="access-denied-desc">
+            Inspection of the immutable system audit trail requires the <code>view:audit_logs</code> permission. Your current authenticated role (<strong id="denied-role-name">Healthcare Staff</strong>) is scoped exclusively to clinical observation and triage.
+          </p>
+          <a href="dashboard.html" class="btn btn-primary">Return to Clinical Dashboard</a>
+        </div>
+
+        <!-- Audit Trail Content Container -->
+        <div id="audit-view-content">
+
+          <!-- Page Header -->
+          <div class="audit-header">
+            <div class="audit-title-group">
+              <h1>
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--color-teal);">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                <span>Audit Trail Logs</span>
+              </h1>
+              <p>Chronological, read-only system event log capturing authentication cycles, alert acknowledgments, and governance events.</p>
+            </div>
+            <div>
+              <span class="audit-immutable-badge" title="Audit events cannot be modified or deleted">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--color-teal);">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                <span>Strictly Read-Only (Immutable)</span>
+              </span>
+            </div>
+          </div>
+
+          <!-- Toolbar (Search & Filters) -->
+          <div class="audit-toolbar">
+            <div class="audit-toolbar-filters">
+              <div class="audit-search-box">
+                <svg class="audit-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" id="input-audit-search" class="form-control" placeholder="Search actor, action, or details..." aria-label="Search audit logs">
+              </div>
+
+              <select id="select-category-filter" class="form-control audit-filter-select" aria-label="Filter by event category">
+                <option value="all">All Categories</option>
+                <option value="Security">Security</option>
+                <option value="Clinical Operation">Clinical Operation</option>
+                <option value="System Health">System Health</option>
+                <option value="Compliance Audit">Compliance Audit</option>
+              </select>
+
+              <select id="select-action-filter" class="form-control audit-filter-select" aria-label="Filter by action code">
+                <option value="all">All Actions</option>
+                <option value="USER_AUTHENTICATION_SUCCESS">USER_AUTHENTICATION_SUCCESS</option>
+                <option value="ALERT_STATUS_ACKNOWLEDGED">ALERT_STATUS_ACKNOWLEDGED</option>
+                <option value="ALERT_STATUS_RESOLVED">ALERT_STATUS_RESOLVED</option>
+                <option value="ALERT_TRIGGERED_CRITICAL">ALERT_TRIGGERED_CRITICAL</option>
+                <option value="PATIENT_RECORD_ACCESSED">PATIENT_RECORD_ACCESSED</option>
+                <option value="SYSTEM_CONFIG_VERIFIED">SYSTEM_CONFIG_VERIFIED</option>
+                <option value="USER_ROLE_MODIFIED">USER_ROLE_MODIFIED</option>
+                <option value="REPORT_GENERATED">REPORT_GENERATED</option>
+                <option value="AUDIT_TRAIL_EXPORT_VIEWED">AUDIT_TRAIL_EXPORT_VIEWED</option>
+              </select>
+
+              <button type="button" class="btn btn-outline btn-sm" id="btn-reset-filters">
+                Reset
+              </button>
+            </div>
+
+            <div class="audit-count-badge" id="audit-count-display">
+              Loading events...
+            </div>
+          </div>
+
+          <!-- Audit Table Card -->
+          <div class="audit-table-card">
+            <div class="table-responsive">
+              <table class="table" id="audit-table">
+                <thead>
+                  <tr>
+                    <th scope="col" style="cursor: pointer;" data-sort="timestamp" aria-sort="descending">
+                      Timestamp
+                    </th>
+                    <th scope="col" style="cursor: pointer;" data-sort="actor" aria-sort="none">
+                      Actor Identity
+                    </th>
+                    <th scope="col" style="cursor: pointer;" data-sort="category" aria-sort="none">
+                      Category
+                    </th>
+                    <th scope="col" style="cursor: pointer;" data-sort="action" aria-sort="none">
+                      Action Event Code
+                    </th>
+                    <th scope="col">
+                      IP Address
+                    </th>
+                    <th scope="col">
+                      Event Summary
+                    </th>
+                    <th scope="col" style="text-align: right;">
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody id="audit-table-body">
+                  <!-- Dynamic rows populated via safe DOM scripting -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Empty State -->
+            <div id="audit-empty-state" class="empty-state" style="display: none; padding: var(--space-2xl);">
+              <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--color-slate-400); margin: 0 auto var(--space-md);">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="8" y1="12" x2="16" y2="12"></line>
+              </svg>
+              <h3>No matching audit events found</h3>
+              <p>Try modifying your keyword query, category filter, or action code selection.</p>
+            </div>
+
+            <!-- Loading State -->
+            <div id="audit-loading-state" style="padding: var(--space-2xl); text-align: center;">
+              <div class="spinner" style="margin: 0 auto var(--space-sm);"></div>
+              <p style="color: var(--color-slate-500); font-size: var(--font-size-sm); margin: 0;">Loading audit trail logs...</p>
+            </div>
+          </div>
+
+          <!-- Pagination Bar -->
+          <div class="pagination-bar" id="audit-pagination-bar" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-md); margin-bottom: var(--space-xl);">
+            <div id="pagination-info" style="font-size: var(--font-size-sm); color: var(--color-slate-600);">
+              Showing 0 to 0 of 0 events
+            </div>
+
+            <div style="display: flex; align-items: center; gap: var(--space-md);">
+              <label for="select-page-size" style="font-size: var(--font-size-sm); color: var(--color-slate-600); margin: 0;">Rows:</label>
+              <select id="select-page-size" class="form-control" style="width: auto; padding: 4px 8px; font-size: var(--font-size-sm);">
+                <option value="5">5</option>
+                <option value="10" selected>10</option>
+                <option value="20">20</option>
+              </select>
+
+              <div id="pagination-controls" class="pagination-controls" style="display: flex; gap: var(--space-xs);">
+                <!-- Dynamic pagination buttons -->
+              </div>
+            </div>
+          </div>
+
+        </div> <!-- /audit-view-content -->
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       Event Details Modal
+       ========================================================================== -->
+  <div id="modal-event-details" class="modal-backdrop" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-event-title">
+      <div class="modal-header">
+        <h2 id="modal-event-title" class="modal-title">Audit Event Inspection</h2>
+        <button type="button" class="modal-close-btn" id="btn-close-details-modal" aria-label="Close dialog">
+          &times;
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="audit-details-grid" id="audit-details-grid">
+          <!-- Populated safely via JS -->
+        </div>
+
+        <div style="margin-top: var(--space-md);">
+          <div class="audit-detail-label">Event Description &amp; Details</div>
+          <p id="details-event-description" style="color: var(--color-navy); font-size: var(--font-size-sm); line-height: 1.5; margin: var(--space-xs) 0 0;"></p>
+        </div>
+
+        <div style="margin-top: var(--space-md);">
+          <div class="audit-detail-label">Simulated Event Metadata (JSON)</div>
+          <pre class="audit-json-box"><code id="details-event-json"></code></pre>
+        </div>
+
+        <div class="modal-simulation-notice" style="margin-top: var(--space-lg); margin-bottom: 0;">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          <span>Demo Audit Policy: The prototype interface rejects modification requests, but cryptographic tamper detection and production-grade audit-log integrity are not implemented.</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="btn-dismiss-details">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts Ordering -->
+  <script src="../assets/js/config.js"></script>
+  <script src="../assets/js/utils.js"></script>
+  <script src="../assets/js/mock-data.js"></script>
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/auth.js"></script>
+  <script src="../assets/js/audit-logs.js"></script>
+</body>
+</html>

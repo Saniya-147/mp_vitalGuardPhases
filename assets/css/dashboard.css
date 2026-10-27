@@ -1,0 +1,393 @@
+/**
+ * VitalGuard AI - Dashboard Styles
+ * assets/css/dashboard.css
+ *
+ * Implements styling for:
+ * - Metric summary cards grid
+ * - Chart visualization containers (Chart.js canvas wrappers)
+ * - Accessible data summary tables
+ * - Simulated alerts triage feed
+ * - Simulated audit / activity log stream
+ * - Simulation disclaimers and status pills
+ */
+
+/* ==========================================================================
+   Dashboard Header & Simulation Notice
+   ========================================================================== */
+.dashboard-header {
+  margin-bottom: var(--space-xl);
+}
+
+.dashboard-title-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-xs);
+}
+
+.dashboard-title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-navy);
+  letter-spacing: -0.02em;
+}
+
+.dashboard-subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.dashboard-disclaimer-banner {
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+/* ==========================================================================
+   Overview Metric Cards Grid
+   ========================================================================== */
+.metric-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
+}
+
+.metric-card {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.metric-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-sm);
+}
+
+.metric-icon-box {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.metric-icon-teal {
+  background-color: var(--color-accent-teal-surface);
+  color: var(--color-accent-teal-dark);
+}
+
+.metric-icon-navy {
+  background-color: rgba(11, 31, 58, 0.08);
+  color: var(--color-primary-navy);
+}
+
+.metric-icon-amber {
+  background-color: var(--color-warning-bg);
+  color: var(--color-warning-text);
+}
+
+.metric-icon-red {
+  background-color: var(--color-error-bg);
+  color: var(--color-error-text);
+}
+
+.metric-label {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-3xs);
+}
+
+.metric-value {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-navy);
+  line-height: 1.1;
+  margin-bottom: var(--space-xs);
+}
+
+.metric-footnote {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  border-top: 1px solid var(--color-border-light);
+  padding-top: var(--space-xs);
+  margin-top: auto;
+}
+
+/* ==========================================================================
+   Two-Column Chart Visualizations Grid
+   ========================================================================== */
+.dashboard-charts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-xl);
+  margin-bottom: var(--space-xl);
+}
+
+.chart-card {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.chart-card-header {
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--color-border-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  background-color: var(--color-bg-surface);
+}
+
+.chart-card-title {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-navy);
+}
+
+.chart-card-subtitle {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+.chart-canvas-wrapper {
+  padding: var(--space-lg);
+  position: relative;
+  min-height: 17rem;
+  max-height: 22rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chart-canvas-wrapper canvas {
+  width: 100% !important;
+  max-height: 20rem;
+}
+
+.chart-accessible-summary {
+  padding: var(--space-sm) var(--space-lg) var(--space-md);
+  border-top: 1px solid var(--color-border-light);
+  background-color: var(--color-bg-subtle);
+  font-size: var(--font-size-xs);
+}
+
+.chart-accessible-summary table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.chart-accessible-summary th,
+.chart-accessible-summary td {
+  padding: var(--space-2xs) var(--space-xs);
+  text-align: left;
+}
+
+.chart-accessible-summary th {
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* ==========================================================================
+   Two-Column Operational Feeds Grid (Alerts Triage + Audit Logs)
+   ========================================================================== */
+.dashboard-feeds-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-xl);
+  margin-bottom: var(--space-xl);
+}
+
+.feed-card {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+}
+
+.feed-card-header {
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--color-border-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.feed-card-title {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-navy);
+}
+
+.feed-card-body {
+  padding: var(--space-md) var(--space-lg);
+  flex: 1;
+  overflow-y: auto;
+  max-height: 26rem;
+}
+
+/* Alert Triage Items */
+.alert-triage-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.alert-triage-item {
+  border: 1px solid var(--color-border-light);
+  border-left-width: 4px;
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-md);
+  background-color: var(--color-bg-surface);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  transition: background-color var(--transition-fast);
+}
+
+.alert-triage-item:hover {
+  background-color: var(--color-bg-subtle);
+}
+
+.alert-triage-item.severity-Critical {
+  border-left-color: var(--color-error);
+}
+
+.alert-triage-item.severity-High {
+  border-left-color: #EA580C;
+}
+
+.alert-triage-item.severity-Warning {
+  border-left-color: var(--color-warning);
+}
+
+.alert-triage-item.severity-Info {
+  border-left-color: var(--color-info);
+}
+
+.alert-triage-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xs);
+  flex-wrap: wrap;
+}
+
+.alert-triage-patient {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-navy);
+  font-size: var(--font-size-sm);
+}
+
+.alert-triage-msg {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+}
+
+.alert-triage-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--space-2xs);
+  font-size: var(--font-size-2xs);
+  color: var(--color-text-muted);
+}
+
+/* Activity / Audit Feed Items */
+.activity-feed-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.activity-feed-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--color-border-light);
+  font-size: var(--font-size-xs);
+}
+
+.activity-feed-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.activity-feed-content {
+  flex: 1;
+}
+
+.activity-feed-actor {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary-navy);
+}
+
+.activity-feed-action {
+  color: var(--color-text-secondary);
+  margin-top: 1px;
+}
+
+.activity-feed-time {
+  font-size: var(--font-size-2xs);
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   Responsive Adaptations for Dashboard
+   ========================================================================== */
+@media (max-width: 1200px) {
+  .metric-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .dashboard-charts-grid,
+  .dashboard-feeds-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 580px) {
+  .metric-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .chart-canvas-wrapper {
+    min-height: 14rem;
+    padding: var(--space-sm);
+  }
+}

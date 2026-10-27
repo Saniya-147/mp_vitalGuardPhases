@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="VitalGuard AI - Clinical Reports & Cohort Synthesis">
+  <title>VitalGuard AI - Clinical Reports</title>
+
+  <!-- Foundational Stylesheets -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/reports.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body>
+
+  <!-- Accessible Skip Link -->
+  <a href="#main-reports" class="sr-only">Skip to clinical reports content</a>
+
+  <!-- Mobile Sidebar Backdrop -->
+  <div id="sidebar-backdrop" class="sidebar-backdrop" aria-hidden="true"></div>
+
+  <!-- App Shell -->
+  <div class="app-shell">
+
+    <!-- Collapsible Sidebar -->
+    <aside id="app-sidebar" class="app-sidebar" aria-label="Main Navigation">
+      
+      <!-- Brand Header -->
+      <div class="sidebar-brand">
+        <img src="../assets/images/vitalguard-logo.svg" alt="VitalGuard AI Emblem" class="sidebar-logo" width="36" height="36">
+        <div>
+          <div class="sidebar-title">VitalGuard AI</div>
+          <div class="sidebar-subtitle">Clinical Intelligence</div>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="sidebar-nav-container">
+        <div class="sidebar-nav-section-title">Operational Views</div>
+        <ul class="sidebar-nav-list">
+          <li class="sidebar-nav-item">
+            <a href="dashboard.html" class="sidebar-nav-link">
+              <span class="sidebar-nav-label-group">
+                <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="3" y="3" width="7" height="9"></rect>
+                  <rect x="14" y="3" width="7" height="5"></rect>
+                  <rect x="14" y="12" width="7" height="9"></rect>
+                  <rect x="3" y="16" width="7" height="5"></rect>
+                </svg>
+                <span>Dashboard</span>
+              </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="patients.html" class="sidebar-nav-link">
+              <span class="sidebar-nav-label-group">
+                <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                <span>Patients</span>
+              </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="predictions.html" class="sidebar-nav-link">
+              <span class="sidebar-nav-label-group">
+                <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M2 12h5l3 7 4-14 3 7h5"></path>
+                </svg>
+                <span>Predictions &amp; XAI</span>
+              </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="alerts.html" class="sidebar-nav-link">
+              <span class="sidebar-nav-label-group">
+                <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                  <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                </svg>
+                <span>Alerts Triage</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="sidebar-nav-section-title" style="margin-top: var(--space-md);">Governance</div>
+        <ul class="sidebar-nav-list">
+          <li class="sidebar-nav-item">
+            <a href="users.html" class="sidebar-nav-link">
+              <span class="sidebar-nav-label-group">
+                <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span>User Management</span>
+              </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="reports.html" class="sidebar-nav-link is-active" aria-current="page">
+              <span class="sidebar-nav-label-group">
+                <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+                <span>Reports</span>
+              </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="audit-logs.html" class="sidebar-nav-link">
+              <span class="sidebar-nav-label-group">
+                <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                <span>Audit Logs</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Sidebar Footer -->
+      <div class="sidebar-footer">
+        <div class="sidebar-user-block">
+          <div class="sidebar-avatar" id="sidebar-user-initials" aria-hidden="true">VG</div>
+          <div class="sidebar-user-details">
+            <div class="sidebar-user-name" id="sidebar-user-name">Loading...</div>
+            <div class="sidebar-user-role" id="sidebar-user-role">Authorized User</div>
+          </div>
+        </div>
+        <button type="button" class="btn btn-outline btn-sm sidebar-logout-btn" id="btn-sidebar-logout">
+          Sign Out
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="app-main-wrapper">
+      
+      <!-- Topbar Header -->
+      <header class="app-topbar">
+        <div class="topbar-left">
+          <button type="button" class="sidebar-toggle-btn" id="btn-toggle-sidebar" aria-label="Toggle navigation menu">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+          <nav aria-label="Breadcrumb">
+            <ol class="breadcrumb-list">
+              <li class="breadcrumb-item"><a href="dashboard.html">Home</a></li>
+              <li class="breadcrumb-item">Governance</li>
+              <li class="breadcrumb-item is-active" aria-current="page">Clinical Reports</li>
+            </ol>
+          </nav>
+        </div>
+
+        <div class="topbar-right">
+          <span class="badge badge-warning" style="font-size: 0.75rem;">
+            Simulation Mode
+          </span>
+          <div class="topbar-user-badge">
+            <span class="topbar-user-name" id="topbar-user-name">User</span>
+            <span class="topbar-user-role-badge" id="topbar-user-role">Staff</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Operational View -->
+      <main id="main-reports" class="app-content-area" tabindex="-1">
+        
+        <!-- Persistent Simulation Banner -->
+        <div class="demo-banner" role="region" aria-label="Simulation notice">
+          <div class="demo-banner-content">
+            <svg class="demo-banner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            <div>
+              <strong>Academic Demonstration Environment:</strong>
+              Report summaries, telemetry analyses, and export files are simulated prototypes.
+            </div>
+          </div>
+        </div>
+
+        <!-- Mandatory Academic Research Disclaimer Box -->
+        <div class="reports-disclaimer-box" role="note">
+          <svg class="reports-disclaimer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+            <line x1="12" y1="9" x2="12" y2="13"></line>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+          </svg>
+          <div>
+            <strong>Academic research prototype — report outputs are not clinically validated.</strong>
+            These summaries are compiled from synthetic test cohorts and must not be used for diagnosis or triage.
+          </div>
+        </div>
+
+        <!-- Page Header -->
+        <div class="reports-header">
+          <div class="reports-title-group">
+            <h1>
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--color-teal);">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+              <span>Clinical Reports</span>
+            </h1>
+            <p>Access synthetic cohort syntheses, telemetry reliability audits, and early deterioration retrospects.</p>
+          </div>
+          <div class="reports-actions">
+            <button type="button" class="btn btn-primary" id="btn-generate-report">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+              <span>Generate Report</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Toolbar (Search & Filters) -->
+        <div class="reports-toolbar">
+          <div class="reports-toolbar-filters">
+            <div class="reports-search-box">
+              <svg class="reports-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" id="input-report-search" class="form-control" placeholder="Search reports by title or ID..." aria-label="Search reports">
+            </div>
+
+            <select id="select-type-filter" class="form-control reports-filter-select" aria-label="Filter by report type">
+              <option value="all">All Report Types</option>
+              <option value="Cohort Summary">Cohort Summary</option>
+              <option value="Telemetry Audit">Telemetry Audit</option>
+              <option value="Model Performance">Model Performance</option>
+              <option value="Alert Incident Analysis">Alert Incident Analysis</option>
+              <option value="Compliance Summary">Compliance Summary</option>
+            </select>
+
+            <select id="select-format-filter" class="form-control reports-filter-select" aria-label="Filter by format">
+              <option value="all">All Formats</option>
+              <option value="PDF">PDF</option>
+              <option value="CSV">CSV</option>
+            </select>
+
+            <select id="select-status-filter" class="form-control reports-filter-select" aria-label="Filter by status">
+              <option value="all">All Statuses</option>
+              <option value="Completed">Completed</option>
+              <option value="Archived">Archived</option>
+            </select>
+
+            <button type="button" class="btn btn-outline btn-sm" id="btn-reset-filters">
+              Reset
+            </button>
+          </div>
+
+          <div class="reports-count-badge" id="report-count-display">
+            Loading reports...
+          </div>
+        </div>
+
+        <!-- Reports Table Card -->
+        <div class="reports-table-card">
+          <div class="table-responsive">
+            <table class="table" id="reports-table">
+              <thead>
+                <tr>
+                  <th scope="col" style="cursor: pointer;" data-sort="id" aria-sort="none">
+                    Report ID
+                  </th>
+                  <th scope="col" style="cursor: pointer;" data-sort="title" aria-sort="none">
+                    Title &amp; Scope
+                  </th>
+                  <th scope="col" style="cursor: pointer;" data-sort="type" aria-sort="none">
+                    Category
+                  </th>
+                  <th scope="col" style="cursor: pointer;" data-sort="format" aria-sort="none">
+                    Format
+                  </th>
+                  <th scope="col" style="cursor: pointer;" data-sort="generatedDate" aria-sort="descending">
+                    Generated Date
+                  </th>
+                  <th scope="col" style="cursor: pointer;" data-sort="status" aria-sort="none">
+                    Status
+                  </th>
+                  <th scope="col" style="text-align: right;">
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody id="reports-table-body">
+                <!-- Dynamic rows populated via safe DOM scripting -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Empty State -->
+          <div id="reports-empty-state" class="empty-state" style="display: none; padding: var(--space-2xl);">
+            <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--color-slate-400); margin: 0 auto var(--space-md);">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="8" y1="12" x2="16" y2="12"></line>
+            </svg>
+            <h3>No reports match your filters</h3>
+            <p>Try clearing your search terms or selecting a different category filter.</p>
+          </div>
+
+          <!-- Loading State -->
+          <div id="reports-loading-state" style="padding: var(--space-2xl); text-align: center;">
+            <div class="spinner" style="margin: 0 auto var(--space-sm);"></div>
+            <p style="color: var(--color-slate-500); font-size: var(--font-size-sm); margin: 0;">Loading clinical reports...</p>
+          </div>
+        </div>
+
+        <!-- Pagination Bar -->
+        <div class="pagination-bar" id="reports-pagination-bar" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-md); margin-bottom: var(--space-xl);">
+          <div id="pagination-info" style="font-size: var(--font-size-sm); color: var(--color-slate-600);">
+            Showing 0 to 0 of 0 reports
+          </div>
+
+          <div style="display: flex; align-items: center; gap: var(--space-md);">
+            <label for="select-page-size" style="font-size: var(--font-size-sm); color: var(--color-slate-600); margin: 0;">Rows:</label>
+            <select id="select-page-size" class="form-control" style="width: auto; padding: 4px 8px; font-size: var(--font-size-sm);">
+              <option value="5">5</option>
+              <option value="10" selected>10</option>
+              <option value="20">20</option>
+            </select>
+
+            <div id="pagination-controls" class="pagination-controls" style="display: flex; gap: var(--space-xs);">
+              <!-- Dynamic pagination buttons -->
+            </div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       Generate Report Modal
+       ========================================================================== -->
+  <div id="modal-generate-report" class="modal-backdrop" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-generate-title">
+      <div class="modal-header">
+        <h2 id="modal-generate-title" class="modal-title">Generate Simulated Report</h2>
+        <button type="button" class="modal-close-btn" id="btn-close-generate-modal" aria-label="Close dialog">
+          &times;
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-simulation-notice">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="16" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+          </svg>
+          <span>Demo Mode — report generation is simulated and saved to this browser session.</span>
+        </div>
+
+        <form id="form-generate-report" novalidate>
+          <div class="form-group">
+            <label for="report-title-input" class="form-label">Report Title <span class="text-danger">*</span></label>
+            <input type="text" id="report-title-input" class="form-control" placeholder="e.g. ICU Vital Drift Synopsis - Oct 2026" required minlength="3">
+            <div class="form-error" id="error-report-title" style="display: none;"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="report-type-select" class="form-label">Report Category <span class="text-danger">*</span></label>
+            <select id="report-type-select" class="form-control" required>
+              <option value="">Select category...</option>
+              <option value="Cohort Summary">Cohort Summary</option>
+              <option value="Telemetry Audit">Telemetry Audit</option>
+              <option value="Model Performance">Model Performance</option>
+              <option value="Alert Incident Analysis">Alert Incident Analysis</option>
+              <option value="Compliance Summary">Compliance Summary</option>
+            </select>
+            <div class="form-error" id="error-report-type" style="display: none;"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="report-period-input" class="form-label">Reporting Period</label>
+            <input type="text" id="report-period-input" class="form-control" placeholder="e.g. Last 7 Days (Oct 08 - Oct 15, 2026)">
+          </div>
+
+          <div class="form-group">
+            <label for="report-format-select" class="form-label">Export File Format <span class="text-danger">*</span></label>
+            <select id="report-format-select" class="form-control" required>
+              <option value="CSV">CSV (Structured Telemetry Dataset)</option>
+              <option value="PDF">PDF (Formatted Executive Document)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="report-desc-input" class="form-label">Report Description / Scope</label>
+            <textarea id="report-desc-input" class="form-control" rows="3" placeholder="Brief outline of cohort targets, telemetry metrics, or review objectives..."></textarea>
+          </div>
+
+          <div class="modal-footer" style="padding-top: var(--space-md); margin-top: var(--space-md); border-top: 1px solid var(--color-border); display: flex; justify-content: flex-end; gap: var(--space-sm);">
+            <button type="button" class="btn btn-outline" id="btn-cancel-generate">Cancel</button>
+            <button type="submit" class="btn btn-primary" id="btn-submit-generate">Generate Report</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       Report Details Modal
+       ========================================================================== -->
+  <div id="modal-report-details" class="modal-backdrop" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-details-title">
+      <div class="modal-header">
+        <h2 id="modal-details-title" class="modal-title">Clinical Report Summary</h2>
+        <button type="button" class="modal-close-btn" id="btn-close-details-modal" aria-label="Close dialog">
+          &times;
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="report-details-grid" id="report-details-grid">
+          <!-- Populated safely via JS -->
+        </div>
+
+        <div style="margin-top: var(--space-md);">
+          <div class="report-detail-label">Report Abstract &amp; Scope</div>
+          <p id="details-report-description" style="color: var(--color-slate-700); font-size: var(--font-size-sm); line-height: 1.5; margin: var(--space-xs) 0 0;"></p>
+        </div>
+
+        <div class="reports-disclaimer-box" style="margin-top: var(--space-lg); margin-bottom: 0;">
+          <svg class="reports-disclaimer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+            <line x1="12" y1="9" x2="12" y2="13"></line>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+          </svg>
+          <div>
+            <strong>Academic research prototype — report outputs are not clinically validated.</strong>
+            Report outputs are generated from simulated telemetry and are not suitable for live healthcare decisions.
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer" style="display: flex; justify-content: space-between; align-items: center;">
+        <button type="button" class="btn btn-primary" id="btn-modal-download-report">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          <span id="btn-modal-download-label">Download Export</span>
+        </button>
+        <button type="button" class="btn btn-secondary" id="btn-dismiss-details">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts Ordering -->
+  <script src="../assets/js/config.js"></script>
+  <script src="../assets/js/utils.js"></script>
+  <script src="../assets/js/mock-data.js"></script>
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/auth.js"></script>
+  <script src="../assets/js/reports.js"></script>
+</body>
+</html>
